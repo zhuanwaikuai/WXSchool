@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C12A2B31-7E44-48A5-9017-208B89CD9B5B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>WXSchool.Bll</RootNamespace>
+    <AssemblyName>WXSchool.Bll</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="TCBase.Saker.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\00Dll\TCBase.Saker.Core.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="OperationResult.cs" />
+    <Compile Include="OperationResultType.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Sys\SysUserBiz.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\10Framework\QJZ.Framework.Utility\QJZ.Framework.Utility.csproj">
+      <Project>{3d866019-d27a-4c23-a0d7-7d4d3dcab2f4}</Project>
+      <Name>QJZ.Framework.Utility</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\20Entity\WXSchool.Dto\WXSchool.Dto.csproj">
+      <Project>{de3523eb-3543-4a70-8607-2c81b87e4ad8}</Project>
+      <Name>WXSchool.Dto</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\20Entity\WXSchool.Model\WXSchool.Model.csproj">
+      <Project>{dbfa43f2-1914-4500-a67b-d51d57a913df}</Project>
+      <Name>WXSchool.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\20Entity\WXSchool.ViewModel\WXSchool.ViewModel.csproj">
+      <Project>{90b676f1-74de-4545-831d-f4ef0f87e495}</Project>
+      <Name>WXSchool.ViewModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\30Dal\WXSchool.Dal\WXSchool.Dal.csproj">
+      <Project>{035ba135-a599-4475-ac5d-e673d8f7bb13}</Project>
+      <Name>WXSchool.Dal</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

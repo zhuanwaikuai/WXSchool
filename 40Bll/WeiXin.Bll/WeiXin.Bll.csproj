@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{BE346BC4-558A-4CA9-880B-0E792766994B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>WeiXin.Bll</RootNamespace>
+    <AssemblyName>WeiXin.Bll</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="TCBase.Saker.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\00Dll\TCBase.Saker.Core.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AuthorizeUrl.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TemplateMsgBiz.cs" />
+    <Compile Include="WeiXinBiz.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\10Framework\QJZ.Framework.Utility\QJZ.Framework.Utility.csproj">
+      <Project>{3d866019-d27a-4c23-a0d7-7d4d3dcab2f4}</Project>
+      <Name>QJZ.Framework.Utility</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\20Entity\WXSchool.Model\WXSchool.Model.csproj">
+      <Project>{DBFA43F2-1914-4500-A67B-D51D57A913DF}</Project>
+      <Name>WXSchool.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\20Entity\WXSchool.ViewModel\WXSchool.ViewModel.csproj">
+      <Project>{90b676f1-74de-4545-831d-f4ef0f87e495}</Project>
+      <Name>WXSchool.ViewModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\30Dal\WXSchool.Dal\WXSchool.Dal.csproj">
+      <Project>{035ba135-a599-4475-ac5d-e673d8f7bb13}</Project>
+      <Name>WXSchool.Dal</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

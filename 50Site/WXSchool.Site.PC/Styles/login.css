@@ -1,0 +1,53 @@
+﻿@charset "utf-8";
+/* CSS Document */
+body{margin:0px; padding:0px; font-size:12px; line-height:24px; color:#444; font-family:"微软雅黑"; background-color:#f2f2f2;}
+textarea{resize:none}
+input,select,img{vertical-align:middle;outline:none;}
+ul,ol,li,dl,dt,dd,p,h1,h2,h3,h4,h5,h6,form,label{margin:0px; padding:0px;}
+h1,h2,h4,h5,h6{font-weight:normal;}
+img{border:none;}
+ul,ol,li,dl,dt,dd{margin:0px; padding:0px; list-style-type:none;}
+a{text-decoration:none; color:#333; outline:none;}
+a:active{star:expression(this.onFocus=this.blur());}
+a:hover{color:#23781c; text-decoration:none;}
+.clear{clear:both; display:block; visibility: hidden; overflow:hidden; line-height:0; font-size:0;}
+.box{ width:1000px; margin:0 auto; }
+.box1{ background:url(../images/banner.jpg) center; height:450px;}
+.kk{ width:1000px; margin:0 auto; position:relative;}
+.loginbox{ width:740px; margin:0 auto; }
+
+.header{ background:url(../images/headerbg.jpg); height:89px;}
+.top{ width:1000px;}
+.logo{ float:left; width:188px; height:89px;}
+.phone{ float:right; position:relative;}
+
+.shadow{ background:url(../images/yy.jpg); height:3px;}
+
+.about{ background:#1f8b8e; height:435px;}
+.company{ font-size:16px; line-height:26px; color:#f2f2f2; float:left; width:626px; margin-top:80px;}
+.company a{ font-size:40px; line-height:40px; color:#f2f2f2; display:block; text-align:center; font-weight:600; margin-bottom:20px;}
+
+.login{ background:url(../images/dlbg.jpg); width:303px; height:247px; float:right; margin-top:80px; padding-top:10px;}
+
+.service{ margin:85px 0;}
+.service ul li{ float:left; text-align:center; margin:0 87px;}
+.service ul li span{ color:#1f8b8e; font-size:14px; font-family:Arial, Helvetica, sans-serif;}
+.service ul li span a{ color:#1f8b8e; font-size:18px; font-family:"微软雅黑"; display:block; text-align:center;}
+.name{ width:1000px; text-align:center; margin-bottom:30px;}
+
+.foot{ background-color:#1f8b8e; text-align:center; color:#fff; font-size:14px; padding:20px 0;}
+.foot a{text-align:center; color:#fff;}
+
+.weixin{ width:190px; position:absolute; top:200px; z-index:999; right:20px;}
+.weixin span{ display:block; text-align:center; color:#000; font-size:16px;}
+
+.ltitle{ color:#f2f2f2; padding-left:10px; font-size:22px; line-height:36px;}
+.ltitle a{ color:#f2f2f2;}
+.user{ background:url(../images/1_03.jpg) no-repeat; width:262px; height:46px; line-height:44px; padding-left:85px; border:none; font-family:"微软雅黑"; color:#666; font-size:16px; padding-right:60px;}
+.password{ background:url(../images/1_06.jpg) no-repeat; width:262px; height:46px; line-height:44px; padding-left:85px; border:none; font-family:"微软雅黑"; color:#666; font-size:16px; padding-right:60px;}
+
+.send{ background:url(../images/dl.png); width:110px; height:36px; border:none;}
+.reset{ background:url(../images/wmdl.png); width:129px; height:36px; border:none;}
+
+.left{ width:400px; float:left;}
+.lelotitle{ padding:10px 0;}

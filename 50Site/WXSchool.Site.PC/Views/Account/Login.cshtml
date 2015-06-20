@@ -1,0 +1,109 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>登录</title>
+    <link href="@Url.Content("~/Styles/style.default.css")" rel="stylesheet" />
+</head>
+<body class="signin">
+    <!-- Preloader -->
+    <div id="preloader">
+        <div id="status"><i class="fa fa-spinner fa-spin"></i></div>
+    </div>
+    <section>
+
+        <div class="signinpanel">
+
+            <div class="row">
+
+                <div class="col-md-7">
+
+                    <div class="signin-info">
+                        <div class="logopanel">
+                            <h1><span>[</span> 系统名称 <span>]</span></h1>
+                        </div><!-- logopanel -->
+
+                        <div class="mb20"></div>
+
+                        <h5><strong>欢迎访问XX公司系统名称!</strong></h5>
+                        <ul>
+                            <li><i class="fa fa-arrow-circle-o-right mr5"></i> 这是一行简介一</li>
+                            <li><i class="fa fa-arrow-circle-o-right mr5"></i> 这是一行简介一</li>
+                            <li><i class="fa fa-arrow-circle-o-right mr5"></i> 这是一行简介一</li>
+                            <li><i class="fa fa-arrow-circle-o-right mr5"></i> 这是一行简介一</li>
+                            <li><i class="fa fa-arrow-circle-o-right mr5"></i> 这是一行简介一</li>
+                        </ul>
+                        <div class="mb20"></div>
+                        
+
+                    </div><!-- signin0-info -->
+
+                </div><!-- col-sm-7 -->
+
+                <div class="col-md-5">
+
+                    <form method="post">
+                        <h3 class="nomargin">登　录</h3>
+                        <input type="hidden" name="reurl" value="@ViewBag.ReturnUrl" />
+                        <input type="text" class="form-control uname" placeholder="用户名" name="username" />
+                        <input type="password" class="form-control pword" placeholder="密　码" name="password" />
+                        @*<a href=""><small>忘记密码?</small></a>*@
+                        <input type="button" id="btnSubmit" class="btn btn-success btn-block" value="登　录" />
+                    </form>
+                </div><!-- col-sm-5 -->
+
+            </div><!-- row -->
+
+            <div class="signup-footer">
+                <div class="pull-left">
+                    &copy; 2014. XX公司
+                </div>
+            </div>
+
+        </div><!-- signin -->
+
+    </section>
+
+    <script src="@Url.Content("~/Scripts/jquery-1.10.2.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/bootstrap.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/custom.js")"></script>
+    <script>
+        $("#btnSubmit").click(function () {
+            var name = $("input[name='username']").val();
+            if (name == "") {
+                alert("请输入您的用户名");
+                return;
+            }
+            var pwd = $("input[name='password']").val();
+            if (pwd == "") {
+                alert("请输入您的密码");
+                return;
+            }
+            var url = $("input[name='reurl']").val();
+
+            $.ajax({
+                url: '/account/login',
+                type: 'post',
+                data: { userName: name, password: pwd },
+                success: function (data) {
+                    if (data.ResultType == 200) {
+                        location.href = url;
+                    } else {
+                        alert(data.Message);
+                    }
+                },
+                error: function (e) {
+                    alert("系统繁忙，请稍后再试！");
+                },
+                complete: function () {
+                }
+            });
+        });
+    </script>
+</body>
+</html>
