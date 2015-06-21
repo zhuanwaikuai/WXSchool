@@ -21,36 +21,17 @@
                 <img src="~/Images/logo.png"/>
             </div><!-- logopanel -->
             <div class="leftpanelinner">
+                <ul class="nav nav-pills nav-stacked nav-bracket">
+                    <li data-func="/School"><a href="@Url.Action("Index", "School")"><i class="fa fa-home"></i> <span>我的学校</span></a></li>
+                    <li data-func="/Student"><a href="#"><i class="fa fa-group"></i> <span>学生管理</span></a></li>
+                </ul>
+                
+                @*权限菜单控制*@
                 @if (ViewBag.RoleType == 90)
                 {
-                    <h5 class="sidebartitle">系统管理平台</h5>
-                    <ul class="nav nav-pills nav-stacked nav-bracket">
-                        <li data-func="/Advertising"><a href="@Url.Action("Index", "Advertising")"><i class="fa fa-home"></i> <span>首页广告栏</span></a></li>
-                        <li data-func="/Parameters"><a href="@Url.Action("Index", "Parameters")"><i class="fa fa-cogs"></i> <span>系统参数</span></a></li>
-                        <li data-func="/EApply"><a href="@Url.Action("Index", "EApply")"><i class="fa fa-edit"></i> <span>企业注册审核</span></a></li>
-                        <li data-func="/PCheck"><a href="@Url.Action("Index", "PCheck")"><i class="fa fa-file-text"></i> <span>招聘职位审核</span></a></li>
-                        <li data-func="/MPosition"><a href="@Url.Action("Index", "MPosition")"><i class="fa fa-sitemap"></i> <span>招聘职位管理</span></a></li>
-                        <li data-func="/MEnterprise"><a href="@Url.Action("Index", "MEnterprise")"><i class="fa fa-th-list"></i> <span>企业管理</span></a></li>
-                        <li data-func="/EntrustZp"><a href="@Url.Action("Index", "EntrustZp")"><i class="fa fa-thumbs-o-up"></i> <span>委托招聘申请</span></a></li>
-    @*<li data-func="123"><a href="#"><i class="fa fa-envelope-o"></i> <span>消息推送</span></a></li>*@
-                        @*<li><a href="#"><i class="fa fa-laptop"></i> <span>Skins &amp; Layouts</span></a></li>*@
-                    </ul>
                 }
                 else
                 {
-                    <h5 class="sidebartitle">企业工作平台</h5>
-                    <ul class="nav nav-pills nav-stacked nav-bracket">
-                        <li data-func="/MEnterprise"><a href="@Url.Action("MyInfo", "MEnterprise")"><i class="fa fa-home"></i> <span>我的企业</span></a></li>
-                        <li data-func="/ESalesman"><a href="@Url.Action("Index", "ESalesman")"><i class="fa fa-sitemap"></i> <span>招聘负责人管理</span></a></li>
-                        <li data-func="/Position/Index"><a href="@Url.Action("Index", "Position")"><i class="fa fa-laptop"></i> <span>发布职位</span></a></li>
-                        <li data-func="/Position/Manage"><a href="@Url.Action("Manage", "Position")"><i class="fa fa-th-list"></i> <span>职位管理</span></a></li>
-                        <li data-func="/AppRecord"><a href="@Url.Action("Index", "AppRecord")"><i class="fa fa-file-text"></i> <span>应聘管理</span></a></li>
-                        <li data-func="/Applicant"><a href="@Url.Action("Index", "Applicant")"><i class="fa fa-search"></i> <span>简历搜索</span></a></li>
-                        @if (ViewBag.EType == 20)
-                        {
-                            <li data-func="/Intermediary"><a href="@Url.Action("Index", "Intermediary")"><i class="fa fa-group"></i> <span>客户公司管理</span></a></li>
-                        }
-                    </ul>
                 }
             </div>
         </div><!-- leftpanel -->
@@ -61,41 +42,10 @@
 
                 <div class="header-right">
                     <ul class="headermenu">
-                        @if (ViewBag.RoleType == 90)
-                        {
-                            <li>
-                                <div class="btn-group">
-                                    <button class="btn btn-default dropdown-toggle tp-icon" data-toggle="dropdown" onclick="javascript:location.href='@Url.Action("Index", "EApply")';">
-                                        <i class="glyphicon glyphicon-list"></i>
-                                        <span class="badge">@Html.Action("GetEApplyCount", "EApply")</span>
-                                    </button>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="btn-group">
-                                    <button class="btn btn-default dropdown-toggle tp-icon" data-toggle="dropdown" onclick="javascript:location.href='@Url.Action("Index", "PCheck")';">
-                                        <i class="glyphicon glyphicon-folder-open"></i>
-                                        <span class="badge">@Html.Action("GetPCheckCount", "PCheck")</span>
-                                    </button>
-                                </div>
-                            </li>
-                        }
-                        else
-                        {
-                            <li>
-                                <div class="btn-group">
-                                    <button class="btn btn-default dropdown-toggle tp-icon" data-toggle="dropdown" onclick="javascript:location.href='@Url.Action("Index", "AppRecord")';">
-                                        <i class="glyphicon glyphicon-user"></i>
-                                        <span class="badge">@Html.Action("GetNewRecord", "AppRecord")</span>
-                                    </button>
-                                </div>
-                            </li>
-                        }
                         <li>
                             <div class="btn-group">
                                 <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                                    @*<img src="@Url.Content("../Images/photos/loggeduser.png")" alt="" />*@
-                                    @ViewBag.EName
+                                    @ViewBag.Name
                                     <span class="caret"></span>
                                 </button>
                                 <ul class="dropdown-menu dropdown-menu-usermenu pull-right">

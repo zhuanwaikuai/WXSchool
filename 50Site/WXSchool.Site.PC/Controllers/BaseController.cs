@@ -44,6 +44,7 @@ namespace WXSchool.Site.PC.Controllers
             if (CurrentUser != null)
             {
                 ViewBag.RoleType = CurrentUser.RoleType;
+                ViewBag.Name = CurrentUser.Name;
             }
         }
 

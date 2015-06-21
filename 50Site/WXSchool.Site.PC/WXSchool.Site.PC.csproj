@@ -125,6 +125,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\SchoolController.cs" />
     <Compile Include="Filter\AuthAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -212,6 +213,7 @@
     <Content Include="Images\loaders\loader8.gif" />
     <Content Include="Images\loaders\loader9.gif" />
     <Content Include="Images\locked.png" />
+    <Content Include="Images\logo.png" />
     <Content Include="Images\lo_061.jpg" />
     <Content Include="Images\lo_11.jpg" />
     <Content Include="Images\l_03.jpg" />
@@ -436,6 +438,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Account\Login.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\School\Index.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

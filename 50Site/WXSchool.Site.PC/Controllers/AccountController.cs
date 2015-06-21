@@ -22,7 +22,7 @@ namespace WXSchool.Site.PC.Controllers
         private void Authentication(CurrentUserVM user)
         {
             string userData = JsonConvert.SerializeObject(user);
-            var ticket = new FormsAuthenticationTicket(1, user.UserName, DateTime.Now, DateTime.Now.AddHours(12), false, userData);
+            var ticket = new FormsAuthenticationTicket(1, user.Name, DateTime.Now, DateTime.Now.AddHours(12), false, userData);
             var cookie = new HttpCookie(FormsAuthentication.FormsCookieName, FormsAuthentication.Encrypt(ticket));
             Response.Cookies.Add(cookie);
         }
