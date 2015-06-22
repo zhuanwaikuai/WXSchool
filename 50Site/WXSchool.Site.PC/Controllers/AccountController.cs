@@ -8,7 +8,7 @@ using Newtonsoft.Json;
 using QJZ.Framework.Utility;
 using WXSchool.Bll;
 using WXSchool.Bll.Sys;
-using WXSchool.Model.Sys;
+using WXSchool.Model;
 using WXSchool.ViewModel;
 
 namespace WXSchool.Site.PC.Controllers

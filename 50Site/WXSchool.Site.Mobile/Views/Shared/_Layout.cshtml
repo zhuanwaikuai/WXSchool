@@ -1,0 +1,25 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewBag.Title-微信校园</title>
+    <meta charset="UTF-8" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta content="telephone=no" name="format-detection" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <link href="@Url.Content("~/styles/base.css")" rel="stylesheet" />
+    @RenderSection("styles", false)
+</head>
+<body>
+    <div class="content">
+        @RenderBody()
+    </div>
+    <script src="@Url.Content("~/Scripts/zepto.min.js")"></script>
+    <script src="@Url.Content("~/scripts/slide.1.0.js")"></script>
+    <script src="@Url.Content("~/scripts/dialog.js")"></script>
+    <script src="@Url.Content("~/scripts/base.js")"></script>
+
+    @RenderSection("scripts", false)
+</body>
+</html>

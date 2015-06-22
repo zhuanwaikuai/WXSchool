@@ -9,6 +9,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "00Dll", "00Dll", "{82598206
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "00Doc", "00Doc", "{2FA26539-E0A6-4241-AACE-98C46A525D8E}"
+	ProjectSection(SolutionItems) = preProject
+		00Doc\WXSchool Tables.htm = 00Doc\WXSchool Tables.htm
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "00Sql", "00Sql", "{32E4DE3D-173D-417F-A7BF-30AAE95327BA}"
 EndProject

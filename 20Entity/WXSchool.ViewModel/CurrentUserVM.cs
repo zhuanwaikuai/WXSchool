@@ -15,5 +15,7 @@
         /// 角色类型：90 管理员
         /// </summary>
         public int RoleType;
+
+        public string OpenId;
     }
 }

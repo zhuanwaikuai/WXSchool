@@ -1,5 +1,5 @@
 ﻿using TCBase.Saker.Core.Persistence;
-using WXSchool.Model.Sys;
+using WXSchool.Model;
 
 namespace WXSchool.Dal.Sys
 {

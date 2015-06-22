@@ -1,67 +1,81 @@
 ﻿/**  版本信息模板在安装目录下，可自行修改。
-* SysUser.cs
+* NoticeDetail.cs
 *
 * 功 能： N/A
-* 类 名： SysUser
+* 类 名： NoticeDetail
 *
 * Ver    变更日期             负责人  变更内容
 * ───────────────────────────────────
-* V0.01  2014/11/15 23:11:35   N/A    初版
+* V0.01  2015/6/22 11:01:57   N/A    初版
 *
 * Copyright (c) 2012 Maticsoft Corporation. All rights reserved.
 *┌──────────────────────────────────┐
 *│　此技术信息为本公司机密信息，未经本公司书面同意禁止向第三方披露．　│
-*│　版权所有：三缺一　　　　　　　　　　　　　　│
+*│　版权所有：嘉为电子　　　　　　　　　　　　　　│
 *└──────────────────────────────────┘
 */
-
 using System;
-
-namespace WXSchool.Model.Sys
+namespace WXSchool.Model
 {
 	/// <summary>
-	/// SysUser:实体类(属性说明自动提取数据库字段的描述信息)
+	/// NoticeDetail:实体类(属性说明自动提取数据库字段的描述信息)
 	/// </summary>
 	[Serializable]
-	public partial class SysUser
+	public partial class NoticeDetail
 	{
 		#region Model
 		/// <summary>
-		/// PK 自增
+		/// 
 		/// </summary>
-		public int UId
+		public int DtlId
 		{
 			set;
 			get;
 		}
 		/// <summary>
-		/// 所属企业
+		/// 
 		/// </summary>
-		public int EId
+		public int HeadId
 		{
 			set;
 			get;
 		}
 		/// <summary>
-		/// 用户名
+		/// 标题
 		/// </summary>
-		public string UserName
+		public string Title
 		{
 			set;
 			get;
 		}
 		/// <summary>
-		/// 密码
+		/// 描述
 		/// </summary>
-		public string Password
+		public string Description
 		{
 			set;
 			get;
 		}
 		/// <summary>
-		/// 角色类型：0 普通用户，10管理员，90 系统管理员
+		/// 点击后跳转的链接
 		/// </summary>
-		public int RoleType
+		public string Url
+		{
+			set;
+			get;
+		}
+		/// <summary>
+		/// 图文消息的图片链接
+		/// </summary>
+		public string PicUrl
+		{
+			set;
+			get;
+		}
+		/// <summary>
+		/// 排序
+		/// </summary>
+		public int Sorting
 		{
 			set;
 			get;

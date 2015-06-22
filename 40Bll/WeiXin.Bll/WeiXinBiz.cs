@@ -7,7 +7,7 @@ using System.Web;
 using System.Web.Security;
 using QJZ.Framework.Utility;
 using WXSchool.Dal.Sys;
-using WXSchool.Model.Sys;
+using WXSchool.Model;
 using WXSchool.ViewModel;
 
 namespace WeiXin.Bll

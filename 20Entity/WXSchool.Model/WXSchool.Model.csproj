@@ -39,9 +39,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="NoticeDetail.cs" />
+    <Compile Include="NoticeHead.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Sys\SysAccessToken.cs" />
-    <Compile Include="Sys\SysUser.cs" />
+    <Compile Include="SendRecord.cs" />
+    <Compile Include="StudentBinding.cs" />
+    <Compile Include="StudentInfo.cs" />
+    <Compile Include="SysAccessToken.cs" />
+    <Compile Include="SysOrganization.cs" />
+    <Compile Include="SysUser.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
