@@ -9,9 +9,9 @@ namespace WeiXin.Bll
 {
     public class AuthorizeUrl
     {
-        private const string Oauth2Base = "https://open.weixin.qq.com/connect/oauth2/authorize?appid={1}&redirect_uri=http://hot371.com/WeiXin/Oauth2Base?reurl={0}&response_type=code&scope=snsapi_base&state=1#wechat_redirect";
+        private const string Oauth2Base = "https://open.weixin.qq.com/connect/oauth2/authorize?appid={1}&redirect_uri=http://m.jswxt.com/WeiXin/Oauth2Base?reurl={0}&response_type=code&scope=snsapi_base&state=1#wechat_redirect";
 
-        private const string Oauth2UserInfo = "https://open.weixin.qq.com/connect/oauth2/authorize?appid={1}&redirect_uri=http://hot371.com/WeiXin/Oauth2?reurl={0}&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect";
+        private const string Oauth2UserInfo = "https://open.weixin.qq.com/connect/oauth2/authorize?appid={1}&redirect_uri=http://m.jswxt.com/WeiXin/Oauth2?reurl={0}&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect";
 
         private const string AccessToken =
             "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid={0}&secret={1}";
@@ -44,9 +44,10 @@ namespace WeiXin.Bll
             }
         }
 
-        public static string GetOauth2BaseUrl(string redirectUrl)
+        public static string GetOauth2BaseUrl()
         {
-            return string.Format(Oauth2Base, redirectUrl, Appid);
+            //return string.Format(Oauth2Base, redirectUrl, Appid);
+            return Oauth2Base;
         }
 
         public static string GetOauth2UserInfoUrl(string redirectUrl)
@@ -56,7 +57,8 @@ namespace WeiXin.Bll
 
         public static string GetTokenUrl()
         {
-            return string.Format(AccessToken, Appid, AppSecret);
+            //return string.Format(AccessToken, Appid, AppSecret);
+            return AccessToken;
         }
 
         public static string GetMsgSendUrl(string token)
@@ -64,9 +66,9 @@ namespace WeiXin.Bll
             return string.Format(MsgSend, token);
         }
 
-        public static string GetUserTokenUrl(string code)
+        public static string GetUserTokenUrl(string code,string appid,string appSecret)
         {
-            return string.Format(UserToken, Appid, AppSecret, code);
+            return string.Format(UserToken, appid, appSecret, code);
         }
 
         public static string GetUserInfoUrl(string token, string openId)

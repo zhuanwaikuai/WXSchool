@@ -47,6 +47,7 @@
     <Compile Include="OperationResultType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Stu\StudentBiz.cs" />
+    <Compile Include="Sys\SysAccessTokenBiz.cs" />
     <Compile Include="Sys\SysUserBiz.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -69,6 +70,10 @@
     <ProjectReference Include="..\..\30Dal\WXSchool.Dal\WXSchool.Dal.csproj">
       <Project>{035ba135-a599-4475-ac5d-e673d8f7bb13}</Project>
       <Name>WXSchool.Dal</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WeiXin.Bll\WeiXin.Bll.csproj">
+      <Project>{BE346BC4-558A-4CA9-880B-0E792766994B}</Project>
+      <Name>WeiXin.Bll</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

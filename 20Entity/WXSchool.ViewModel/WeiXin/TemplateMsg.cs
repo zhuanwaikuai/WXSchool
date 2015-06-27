@@ -19,6 +19,7 @@ namespace WXSchool.ViewModel
         public TemplateNote first;
         public TemplateNote keyword1;
         public TemplateNote keyword2;
+        public TemplateNote keyword3;
         public TemplateNote remark;
     }
 

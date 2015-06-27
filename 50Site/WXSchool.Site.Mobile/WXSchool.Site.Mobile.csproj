@@ -124,6 +124,7 @@
     <Compile Include="App_Start\IocConfig.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
+    <Compile Include="Controllers\WeiXinController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

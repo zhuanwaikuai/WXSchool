@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using TCBase.Saker.Core;
 using TCBase.Saker.Core.AOP;
+using WeiXin.Bll;
 using WXSchool.Dal.Stu;
 using WXSchool.Dto;
 using WXSchool.Model;
@@ -20,6 +21,7 @@ namespace WXSchool.Bll.Stu
             this._respository = respository;
         }
 
+        #region 学生信息微信绑定
         /// <summary>
         /// 学生信息微信绑定
         /// </summary>
@@ -30,6 +32,7 @@ namespace WXSchool.Bll.Stu
         /// <returns></returns>
         public virtual OperationResult Bind(string name, string idCard, string mobile, string openId)
         {
+            //1、获取学生信息
             IEnumerable<StudentInfo> list =
                 _respository.QueryStudent(new StudentDto() {StudentName = name, IDCardNo = idCard});
             if (list==null||!list.Any())
@@ -38,6 +41,7 @@ namespace WXSchool.Bll.Stu
             }
 
             StudentInfo student = list.First();
+            //2、绑定
             StudentBinding binding = new StudentBinding()
             {
                 StudentId = student.StudentId,
@@ -48,9 +52,12 @@ namespace WXSchool.Bll.Stu
             var result = ClassFactory.GetInstance<StudentBindingRespository>().Add(binding);
             if (result > 0)
             {
+                //3、微信推送
+                TemplateMsgBiz.ParentBind(openId, name,mobile, student.SchoolId);
                 return new OperationResult(OperationResultType.Success, "绑定成功");
             }
             return new OperationResult(OperationResultType.Error, "绑定失败");
         }
+        #endregion
     }
 }

@@ -6,6 +6,7 @@ using System.Text;
 using System.Web;
 using System.Web.Security;
 using QJZ.Framework.Utility;
+using TCBase.Saker.Core;
 using WXSchool.Dal.Sys;
 using WXSchool.Model;
 using WXSchool.ViewModel;
@@ -72,26 +73,22 @@ namespace WeiXin.Bll
         /// 根据当前日期 判断Access_Token 是否超期  如果超期返回新的Access_Token   否则返回之前的Access_Token 
         /// </summary>
         /// <returns></returns>
-        public static string GetExistAccessToken()
+        public static string GetExistAccessToken(SysAccessToken exist)
         {
-            string token = string.Empty;
-            var respository = new SysAccessTokenRespository();
-            //读库
-            var exist = respository.GetEntityById(1);
-            token = exist.access_token;
+            string token = exist.access_token;
             DateTime lastTime = exist.LastTime;
 
-            if (DateTime.Now > lastTime)
+            if (DateTime.Now >= lastTime)
             {
                 //重新获取
                 lastTime = DateTime.Now;
-                var newToken = GetAccessToken();
+                var newToken = GetAccessToken(exist.AppID, exist.AppSecret);
                 lastTime = lastTime.AddSeconds(newToken.expires_in);
                 //入库
                 exist.LastTime = lastTime;
                 exist.access_token = newToken.access_token;
                 exist.expires_in = newToken.expires_in;
-                respository.Modify(exist);
+                ClassFactory.GetInstance<SysAccessTokenRespository>().Modify(exist);
 
                 token = newToken.access_token;
             }
@@ -99,9 +96,9 @@ namespace WeiXin.Bll
             return token;
         }
 
-        private static SysAccessToken GetAccessToken()
+        private static SysAccessToken GetAccessToken(string appId, string appSecret)
         {
-            string url = AuthorizeUrl.GetTokenUrl();
+            string url = string.Format(AuthorizeUrl.GetTokenUrl(),appId,appSecret);
             return NetHelper.HttpGet<SysAccessToken>(url, SerializationType.Json);
         }
 
@@ -158,43 +155,43 @@ namespace WeiXin.Bll
         #endregion
 
         #region 发送消息
-        public static void SendMsg(WeiXinMsg msg)
-        {
-            string token = GetExistAccessToken();
-            string url = AuthorizeUrl.GetMsgSendUrl(token);
-            var result = NetHelper.HttpPost(url, msg, SerializationType.Json);
-        }
+        //public static void SendMsg(WeiXinMsg msg)
+        //{
+        //    string token = GetExistAccessToken();
+        //    string url = AuthorizeUrl.GetMsgSendUrl(token);
+        //    var result = NetHelper.HttpPost(url, msg, SerializationType.Json);
+        //}
 
-        public static void SendTemplateMsg(object msg)
+        public static void SendTemplateMsg(dynamic msg, SysAccessToken accessToken)
         {
-            string token = GetExistAccessToken();
+            string token = GetExistAccessToken(accessToken);
             string url = AuthorizeUrl.GetTemplateSendUrl(token);
             var result = NetHelper.HttpPost(url, msg, SerializationType.Json);
         }
         #endregion
 
         #region 获取用户信息
-        public static WeiXinUser GetUserInfo(string code)
-        {
-            string url = AuthorizeUrl.GetUserTokenUrl(code);
-            var token = NetHelper.HttpGet<WeiXinUserToken>(url, SerializationType.Json);
-            if (token.errcode==0)
-            {
-                //成功
-                url = AuthorizeUrl.GetUserInfoUrl(token.access_token, token.openid);
-                var user = NetHelper.HttpGet<WeiXinUser>(url, SerializationType.Json);
-                if (user.errcode==0)
-                {
-                    return user;
-                }
-            }
+        //public static WeiXinUser GetUserInfo(string code)
+        //{
+        //    string url = AuthorizeUrl.GetUserTokenUrl(code);
+        //    var token = NetHelper.HttpGet<WeiXinUserToken>(url, SerializationType.Json);
+        //    if (token.errcode==0)
+        //    {
+        //        //成功
+        //        url = AuthorizeUrl.GetUserInfoUrl(token.access_token, token.openid);
+        //        var user = NetHelper.HttpGet<WeiXinUser>(url, SerializationType.Json);
+        //        if (user.errcode==0)
+        //        {
+        //            return user;
+        //        }
+        //    }
 
-            return null;
-        }
+        //    return null;
+        //}
 
-        public static string GetOpenId(string code)
+        public static string GetOpenId(string code, string appid, string appSecret)
         {
-            string url = AuthorizeUrl.GetUserTokenUrl(code);
+            string url = AuthorizeUrl.GetUserTokenUrl(code,appid,appSecret);
             var token = NetHelper.HttpGet<WeiXinUserToken>(url, SerializationType.Json);
             if (token.errcode == 0)
             {
