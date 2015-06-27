@@ -58,20 +58,11 @@
     $(".btn_submit").on("click", function () {
         if ($("span").hasClass("red")
             || $(".input_verify").hasClass("red")) {
-            dialog.alert("提交失败", "请先完善绑定信息！", "知道了");
+            dialog.alert("提交失败", "请先完善信息！", "知道了");
             return;
         }
-        
-        $.ajax({
-            url: '',
-            type: 'post',
-            data: {  },
-            success: function (data) {
-                if (data.State == 200) {
-                    location.href = '';
-                }
-            }
-        });
+        //页面的提交业务
+        doSubmit();
     });
     
 })(window);
