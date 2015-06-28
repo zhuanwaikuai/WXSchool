@@ -5,20 +5,26 @@ using System.Text;
 
 namespace WXSchool.ViewModel
 {
-    public class WeiXinMsg
+    /// <summary>
+    /// 客服图文消息
+    /// </summary>
+    public class CustomerNewsMsg
     {
-        public string touser { get; set; }
-        public string msgtype { get; set; }
-        public MsgContent text { get; set; }
+        public string touser;
+        public string msgtype;
+        public News news;
     }
 
-    public enum MsgType
+    public class News
     {
-        text
+        public Article[] articles;
     }
 
-    public class MsgContent
+    public class Article
     {
-        public string content { get; set; }
+        public string title;
+        public string description;
+        public string url;
+        public string picurl;
     }
 }

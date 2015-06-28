@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AuthorizeUrl.cs" />
+    <Compile Include="CustomerMsgBiz.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TemplateMsgBiz.cs" />
     <Compile Include="WeiXinBiz.cs" />

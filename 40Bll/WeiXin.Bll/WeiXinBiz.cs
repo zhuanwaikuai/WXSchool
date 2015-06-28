@@ -154,7 +154,7 @@ namespace WeiXin.Bll
 
         #endregion
 
-        #region 发送消息
+        #region 发送模板消息
         //public static void SendMsg(WeiXinMsg msg)
         //{
         //    string token = GetExistAccessToken();
@@ -166,6 +166,15 @@ namespace WeiXin.Bll
         {
             string token = GetExistAccessToken(accessToken);
             string url = AuthorizeUrl.GetTemplateSendUrl(token);
+            var result = NetHelper.HttpPost(url, msg, SerializationType.Json);
+        }
+        #endregion
+
+        #region 发送客服消息
+        public static void SendCustomerMsg(dynamic msg, SysAccessToken accessToken)
+        {
+            string token = GetExistAccessToken(accessToken);
+            string url = AuthorizeUrl.GetCustomerSendUrl(token);
             var result = NetHelper.HttpPost(url, msg, SerializationType.Json);
         }
         #endregion

@@ -28,6 +28,8 @@ namespace WeiXin.Bll
         private const string Ticket =
             "https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token={0}&type=jsapi";
 
+        private const string CustomerSend = "https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token={0}";
+
         public static string Appid
         {
             get
@@ -86,5 +88,9 @@ namespace WeiXin.Bll
             return string.Format(Ticket, token);
         }
 
+        public static string GetCustomerSendUrl(string token)
+        {
+            return string.Format(CustomerSend, token);
+        }
     }
 }
