@@ -1,0 +1,67 @@
+﻿@model WXSchool.Model.SysAccessToken
+@{
+    ViewBag.Title = "机构微信配置";
+}
+
+<div class="panel-body">
+    <form id="myForm" class="form-horizontal" method="POST">
+        <input type="hidden" name="PId" value="@Model.OrgId" />
+        <div class="form-group">
+            <label class="col-sm-2 control-label">机构：<span class="asterisk">*</span></label>
+            <div class="col-sm-3">
+                机构树
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">AppId：<span class="asterisk">*</span></label>
+            <div class="col-sm-3">
+                <input type="text" class="form-control required" name="AppID" value="@Model.AppID">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">AppSecret：<span class="asterisk">*</span></label>
+            <div class="col-sm-3">
+                <input type="text" class="form-control required" name="AppSecret" value="@Model.AppSecret">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">AppSecret：</label>
+            <div class="col-sm-3">
+                <input type="text" class="form-control" name="AppToken" value="@Model.AppToken">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">绑定推送模板：<span class="asterisk">*</span></label>
+            <div class="col-sm-3">
+                <input type="text" class="form-control required" name="TemplateId1" value="@Model.TemplateId1">
+            </div>
+        </div>
+    </form>
+</div>
+<div class="panel-footer">
+    <div class="col-sm-6 col-sm-offset-3">
+        <input type="button" id="submit" class="btn btn-primary" value="保　存" />&nbsp;
+        <input type="button" id="goback" class="btn btn-default" value="返　回" />
+    </div>
+</div>
+
+@section scripts
+{
+    <script src="@Url.Content("~/Scripts/jquery-form.js")"></script>
+    <script>
+        $().ready(function () {
+            $("#submit").click(function () {
+                if ($("#myForm").valid()) {
+                    $("#myForm").ajaxSubmit({
+                        success: function (data) {
+                            alert(data.Message);
+                            if (data.ResultType == 200) {
+                                location.href = "@Url.Action("Index")";
+                            }
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+}

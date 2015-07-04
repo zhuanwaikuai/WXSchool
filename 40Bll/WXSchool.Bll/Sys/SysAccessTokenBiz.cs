@@ -18,9 +18,31 @@ namespace WXSchool.Bll.Sys
             this._respository = respository;
         }
 
-        public SysAccessToken GetAccessToken(int orgId)
+        public virtual SysAccessToken GetAccessToken(int orgId)
         {
             return _respository.GetEntityById(orgId);
+        }
+
+        public virtual IEnumerable<dynamic> GetAccessTokens(string name)
+        {
+            return _respository.QueryAccessTokens(name);
+        }
+
+        public virtual OperationResult AddAccessToken(SysAccessToken token)
+        {
+            string msg = "操作成功！";
+            try
+            {
+                token.LastTime = DateTime.Now;
+                _respository.Add(token);
+                return new OperationResult(OperationResultType.Success, msg);
+            }
+            catch (Exception ex)
+            {
+                msg = ex.Message;
+            }
+
+            return new OperationResult(OperationResultType.Error, msg);
         }
     }
 }

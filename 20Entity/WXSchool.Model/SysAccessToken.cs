@@ -23,7 +23,15 @@ namespace WXSchool.Model
 	[Serializable]
 	public partial class SysAccessToken
 	{
-		#region Model
+        #region Model
+        /// <summary>
+        /// 
+        /// </summary>
+        public int OrgId
+        {
+            set;
+            get;
+        }
 		/// <summary>
 		/// 
 		/// </summary>
@@ -68,14 +76,6 @@ namespace WXSchool.Model
 		/// 
 		/// </summary>
 		public DateTime LastTime
-		{
-			set;
-			get;
-		}
-		/// <summary>
-		/// 
-		/// </summary>
-		public int OrgId
 		{
 			set;
 			get;
