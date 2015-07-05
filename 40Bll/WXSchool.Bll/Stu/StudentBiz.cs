@@ -59,5 +59,20 @@ namespace WXSchool.Bll.Stu
             return new OperationResult(OperationResultType.Error, "绑定失败");
         }
         #endregion
+
+        #region 获取学生信息
+        public virtual OperationResult GetStudentList()
+        {
+            //1、获取学生信息
+            IEnumerable<StudentInfo> list =
+                _respository.QueryStudentList(new StudentDto());
+
+            if (list.ToList().Count > 0)
+            {
+                return new OperationResult(OperationResultType.Success, "查询成功", list.ToList<StudentInfo>());
+            }
+            return new OperationResult(OperationResultType.Error, "查无结果");
+        }
+        #endregion
     }
 }

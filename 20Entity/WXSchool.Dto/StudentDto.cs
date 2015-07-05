@@ -23,5 +23,20 @@ namespace WXSchool.Dto
             set;
             get;
         }
+
+        /// <summary>
+        /// 学校Id
+        /// </summary>
+        public int SchoolId { get; set; }
+
+        /// <summary>
+        /// 年级code
+        /// </summary>
+        public string GradeCode { get; set; }
+
+        /// <summary>
+        /// 班级名次
+        /// </summary>
+        public string ClassName { get; set; }
     }
 }

@@ -126,6 +126,7 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SchoolController.cs" />
+    <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="Controllers\WXConfigController.cs" />
     <Compile Include="Filter\AuthAttribute.cs" />
     <Compile Include="Global.asax.cs">
@@ -448,6 +449,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\WXConfig\Edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Student\Index.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
