@@ -61,17 +61,13 @@ namespace WXSchool.Bll.Stu
         #endregion
 
         #region 获取学生信息
-        public virtual OperationResult GetStudentList()
+        public virtual IEnumerable<StudentInfo> GetStudentList(string name)
         {
             //1、获取学生信息
             IEnumerable<StudentInfo> list =
                 _respository.QueryStudentList(new StudentDto());
 
-            if (list.ToList().Count > 0)
-            {
-                return new OperationResult(OperationResultType.Success, "查询成功", list.ToList<StudentInfo>());
-            }
-            return new OperationResult(OperationResultType.Error, "查无结果");
+            return list;
         }
         #endregion
     }

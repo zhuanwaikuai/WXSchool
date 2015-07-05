@@ -13,13 +13,8 @@ namespace WXSchool.Site.PC.Controllers
     {
         public ActionResult Index()
         {
-            OperationResult result = _biz.GetStudentList();
-            if (result.ResultType == OperationResultType.Success)
-            {
-                var studentList = result.AppendData as List<StudentInfo>;
-                return View(studentList);
-            }
-            return View();
+            var list = _biz.GetStudentList(string.Empty);
+            return View(list);
         }
 
     }
