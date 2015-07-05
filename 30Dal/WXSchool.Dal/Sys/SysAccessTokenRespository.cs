@@ -18,5 +18,15 @@ namespace WXSchool.Dal.Sys
 
             return base.GetList<dynamic>(sql, new { name });
         }
+
+        public void Insert(SysAccessToken token)
+        {
+            var sql =
+                "INSERT INTO [SysAccessToken] " +
+                "([OrgId],[AppID],[AppSecret],[AppToken], [LastTime],[TemplateId1]) " +
+                "VALUES(@OrgId,@AppID,@AppSecret,@AppToken,getdate(),@TemplateId1)";
+
+            base.Execute(sql, new {token.OrgId,token.AppID,token.AppSecret,token.AppToken,token.TemplateId1});
+        }
     }
 }
