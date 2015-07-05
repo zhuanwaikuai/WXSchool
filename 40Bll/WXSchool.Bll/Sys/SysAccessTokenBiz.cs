@@ -34,7 +34,8 @@ namespace WXSchool.Bll.Sys
             try
             {
                 token.LastTime = DateTime.Now;
-                _respository.Add(token);
+                //_respository.Add(token);
+                _respository.Insert(token);
                 return new OperationResult(OperationResultType.Success, msg);
             }
             catch (Exception ex)
