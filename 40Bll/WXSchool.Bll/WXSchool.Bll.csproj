@@ -43,6 +43,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Mee\HotelBiz.cs" />
+    <Compile Include="Mee\ParticipantsBiz.cs" />
+    <Compile Include="Mee\RegistrationsBiz.cs" />
     <Compile Include="OperationResult.cs" />
     <Compile Include="OperationResultType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

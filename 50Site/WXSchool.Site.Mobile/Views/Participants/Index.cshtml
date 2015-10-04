@@ -1,0 +1,42 @@
+﻿@model IEnumerable<WXSchool.Model.Meeting.Participants>
+@{
+    ViewBag.Title = "参会人员信息";
+}
+
+@section styles{
+    <link href="@Url.Content("~/Styles/participants.css?v=1")" rel="stylesheet" />
+}
+
+<div class="page page_1">
+    <ul>
+        <li>
+            <h2>参会人员信息</h2>
+        </li>
+        @foreach (var item in Model)
+        {
+            <li>
+                <div class="td_1">@(item.PName == "" ? "未填写" : item.PName)</div>
+                <div class="td_2" data-id="@item.ParId">
+                    >
+                </div>
+            </li>
+        }
+    </ul>
+    <div class="btn_box">
+        <div class="btn_cancel">上一页</div>
+        <div class="btn_ok">确定</div>
+    </div>
+</div>
+
+@section scripts{
+    <script>
+        //提交
+        $(".td_2").on("click", function() {
+            var parId = $(this).attr("data-id");
+            location.href = '@Url.Action("Edit", "Participants")' + '?parId=' + parId;
+        });
+        $(".btn_ok").on("click", function () {
+            location.href = '@Url.Action("Preview", "Meeting", new { ViewBag.RegId })';
+        });
+    </script>
+}

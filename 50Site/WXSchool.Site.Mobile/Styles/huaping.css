@@ -1,0 +1,85 @@
+* { margin: 0; padding: 0; font-weight: normal; }
+html, body { width: 100%; height: 100%; overflow: hidden; color: #58fdf6; background-color: #02031e; }
+body { font-family: "Helvetica Neue", Helvetica, STHeiTi, sans-serif; }
+.content { max-width: 640px; height: 100%; margin: 0 auto; position: relative; font-size: 1.2rem; }
+
+.page { position: absolute; top: 0; left: 0; width: 100%; height: 100%; -webkit-transform:translateY(100%);transform:translateY(100%); }
+.content .page:first-child {-webkit-transform:translateY(0);transform:translateY(0); }
+
+.page_1 { background: url('../images/meeting/page_1.jpg') no-repeat center center; background-size: 100% auto; }
+.page_1 h2 { padding-top: 3.7rem; font-size: 1.6rem; text-align: center; }
+
+.page_2 { background: url('../images/meeting/page_2.jpg') no-repeat center center; background-size: 100% 100%; }
+.page_2 .title { position: absolute; top: 6%; left: 30%; right: 39%; bottom: 88%; text-align: center; }
+.page_2 h2 { display: table; width: 100%; height: 100%; }
+.page_2 h2 span { display: table-cell; vertical-align: middle; font-size: 2.1rem; font-weight: bold; }
+.page_2 .txt { position: absolute; top: 23.6%; right: 12.5%; left: 11%; font-size: 1.4rem; line-height: 2rem; }
+
+.page_3 { background: url('../images/meeting/page_3.jpg') no-repeat center center; background-size: 100% 100%; }
+.page_3 .top { position: absolute; top: 11%; right: 15%; left: 13%; }
+.page_3 h2 { line-height: 4.4rem; text-align: center; font-weight:bold; }
+.mtime, .maddress { font-size: 1.4rem; line-height: 2rem; border-bottom: solid 1px #2a6e7b; margin-top: 1rem; }
+.maddress { margin-top: 5rem; }
+.page_3 .bottom { position: absolute; top: 74.6%; left: 19.6%; right: 19.6%; bottom: 15.5%; text-align: center; }
+.mbtn { display:table; width:100%; height:100%; }
+.mbtn span { display:table-cell; vertical-align:middle; font-weight:bold; font-size:2.2rem; color:#ffd800; }
+
+.jian { position:absolute; bottom:2rem; left:50%; z-index:9; margin-left:-1.65rem; width:3.3rem; height:1.8rem;background: url('../images/meeting/jian.png') no-repeat center center; background-size: 100% 100%;  -webkit-transform:translate(0,0);transform:translate(0,0); -webkit-animation:jian_ani 1000ms infinite;animation:jian_ani 1000ms infinite; }
+
+@-webkit-keyframes jian_ani {
+    0% { -webkit-transform:translate3d(0,0,0) scale(1); }
+    50% { -webkit-transform:translate3d(0,1rem,0) scale(0.8); }
+    100% { -webkit-transform:translate3d(0,0,0) scale(1); }
+}
+@keyframes jian_ani {
+    0% { transform:translate3d(0,0,0) scale(1); }
+    50% { transform:translate3d(0,1rem,0) scale(0.8); }
+    100% { transform:translate3d(0,0,0) scale(1); }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media screen and (max-width:320px) {
+    html, body { font-size: 10px; }
+}
+
+@media screen and (min-width:320px) {
+    html, body { font-size: 10px; }
+}
+
+@media screen and (min-width:360px) {
+    html, body { font-size: 11px; }
+}
+
+@media screen and (min-width:375px) {
+    html, body { font-size: 12px; }
+}
+
+@media screen and (min-width:414px) {
+    html, body { font-size: 13px; }
+}
+
+@media screen and (min-width:440px) {
+    html, body { font-size: 14px; }
+}
+
+@media screen and (min-width:480px) {
+    html, body { font-size: 15px; }
+}
+
+@media screen and (min-width:640px) {
+    html, body { font-size: 20px; }
+}

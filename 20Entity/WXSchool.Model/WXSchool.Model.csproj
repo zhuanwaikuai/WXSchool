@@ -39,6 +39,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Meeting\Hotel.cs" />
+    <Compile Include="Meeting\MeetingConfig.cs" />
+    <Compile Include="Meeting\Participants.cs" />
+    <Compile Include="Meeting\Registrations.cs" />
     <Compile Include="NoticeDetail.cs" />
     <Compile Include="NoticeHead.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

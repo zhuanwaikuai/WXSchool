@@ -1,0 +1,75 @@
+﻿@model WXSchool.Model.Meeting.Participants
+@{
+    ViewBag.Title = "填写参会人员信息";
+}
+@section styles{
+    <link href="@Url.Content("~/Styles/participants.css?v=1")" rel="stylesheet" />
+}
+
+<input type="hidden" id="parId" value="@Model.ParId" />
+<input type="hidden" id="regId" value="@Model.RegistrationId"/>
+<div class="page page_1">
+    <ul>
+        <li>
+            <h2>填写参会人员信息</h2>
+        </li>
+    </ul>
+
+    <ul>
+        <li>
+            <div class="td_1">组别：</div>
+            <div class="td_2">
+                <span class="select_txt red">请选择组别</span>
+                <select id="group" class="select_year select_opacity">
+                    <option>请选择组别</option>
+                    <option value="小学语文" data-id="1">小学语文</option>
+                    <option value="小学数学" data-id="2">小学数学</option>
+                </select>
+                <em class="jain"></em>
+            </div>
+        </li>
+
+        <li>
+            <div class="td_1">姓名：</div>
+            <div class="td_2">
+                <input class="red input_verify" value="@(Model.PName == "" ? "请输入姓名" : Model.PName)" tip="@(Model.PName == "" ? "请输入姓名" : Model.PName)" maxlength="30" id="pName" />
+            </div>
+        </li>
+
+        <li>
+            <div class="td_1">身份证号码：</div>
+            <div class="td_2">
+                <input id="icard" class="red input_verify" value="@(Model.IDCardNo == "" ? "请输入身份证号码" : Model.IDCardNo)" tip="@(Model.IDCardNo == "" ? "请输入身份证号码" : Model.IDCardNo)" maxlength="18" />
+            </div>
+        </li>
+
+        <li>
+            <div class="td_1">性别：</div>
+            <div class="td_2">
+                <div class="radio_box">
+                    <label data-val="1" class="radio @(Model.Gender == 1 ? "radio_selected" : "")"><span>男</span></label>
+                    <label data-val="2" class="radio @(Model.Gender==2?"radio_selected":"")"><span>女</span></label>
+                </div>
+            </div>
+        </li>
+
+        <li class="hotel_info">
+            <div class="td_1">手机号码：</div>
+            <div class="td_2">
+                <input id="phone" class="red input_verify" value="@(Model.Telephone == "" ? "请输入手机号码" : Model.Telephone)" tip="@(Model.Telephone == "" ? "请输入手机号码" : Model.Telephone)" maxlength="11" />
+            </div>
+        </li>
+    </ul>
+
+    <div class="btn_box">
+        <div class="btn_cancel">取消</div>
+        <div class="btn_ok">确定</div>
+    </div>
+</div>
+
+@section scripts{
+    <script src="@Url.Content("~/scripts/participants.js")"></script>
+    <script>
+
+    </script>
+}

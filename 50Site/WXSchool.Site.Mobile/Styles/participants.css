@@ -1,0 +1,28 @@
+﻿.content { max-width: 640px; min-height: 100%; margin: 0 auto; background-color: #f7f7f7; position: relative; }
+
+h2 { font-size: 15px; font-weight: 700; }
+h2:before { content: ""; display: inline-block; width: 4px; height: 12px; background: #ff9000; margin-right: 5px; }
+.em2 { margin-left: 2em; }
+
+.page_1 { padding: 10px;  }
+.page_1 ul { line-height: 42px; border: 1px solid #DDD; background: #fff; overflow: hidden; margin-bottom:10px; }
+.page_1 li { overflow: hidden; line-height: 42px; border-top: 1px solid #DDD; padding: 0 15px; position: relative; }
+.page_1 ul li:first-child { border-top: 0; }
+.td_1 { width: 80px; float: left;white-space: nowrap; }
+.td_2 { margin-left: 80px; text-align: right; }
+.td_2 input { display: block; width: 100%; height: 41px; line-height: normal; text-align: right; border: 0; }
+.jain { width: 6px; height: 6px; border: solid 1px #A4ADBC; border-width: 1px 1px 0 0; -webkit-transform: rotate(45deg); position: absolute; top: 17px; right: 5px; }
+.select_opacity { position: absolute; top: 0; left: 0; z-index: 10; width: 100%; height: 100%; opacity: 0; }
+.btn_zc { line-height: 42px; text-align: center; margin: 10px 0; font-size: 16px; color: white; background: #ff7a4c; }
+.red { color: gray; }
+
+.radio_box {float:right; }
+.radio {  display:inline-block; }
+.radio:before { content: ""; display: inline-block; width: 10px; height: 10px; margin: 0 5px 0 20px; border: solid 5px #cfcfcf; background-color: #999; border-radius: 10px; vertical-align: middle; }
+.radio_selected:before { background-color: #ff5b0a; }
+.page_1 .no_tips {height:42px; line-height:20px; display:none; }
+
+
+.btn_box { text-align: center; }
+.btn_ok, .btn_cancel { display: inline-block; width: 145px; line-height: 42px; border: 1px solid #c4c4c4; }
+.btn_ok { color: white; background: #ff7a4c; border-color: #ff7a4c; }

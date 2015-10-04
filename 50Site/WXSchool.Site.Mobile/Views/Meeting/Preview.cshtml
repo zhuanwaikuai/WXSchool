@@ -1,0 +1,42 @@
+﻿@using System.Collections
+@model WXSchool.ViewModel.Meeting.RegistrationInfo
+@{
+    ViewBag.Title = "报名信息预览";
+    WXSchool.Model.Meeting.Registrations registration = Model.Registration;
+    IEnumerable<WXSchool.Model.Meeting.Participants> participantses = Model.ParticipantList;
+}
+
+@section styles{
+    <link href="@Url.Content("~/Styles/registrate_preview.css?v=1")" rel="stylesheet" />
+}
+
+<div class="block">
+    <h2><span>信息预览</span><span class="icon edit">修改</span></h2>
+</div>
+<div class="block">
+    <p><span class="td_1">所在地区：</span><span class="td_2">@(registration.ProvinceName + registration.CityName + registration.CountyName)</span></p>
+    <p><span class="td_1">单位名称：</span><span class="td_2">@(registration.OrganizationName)</span></p>
+    <p><span class="td_1">参会人数：</span><span class="td_2">@(registration.Participants)</span></p>
+    <p><span class="td_1">代预定酒店：</span><span class="td_2">@(registration.IsBooking==1?"是":"否")</span></p>
+    @if (registration.IsBooking == 1)
+    {
+        <p><span class="td_1">酒店：</span><span class="td_2">@(registration.HotelName)</span></p>
+        <p><span class="td_1">房间数量：</span><span class="td_2">@(registration.BookedRooms)</span></p>
+        <p><span class="td_1">住宿天数：</span><span class="td_2">@(registration.LodgingDays)</span></p>
+    }
+    <p><span class="td_1">9日晚留下用餐：</span><span class="td_2">@(registration.HaveMeals == 1 ? "是" : "否")</span></p>
+    
+</div>
+
+
+    @foreach (var item in participantses)
+    {
+        <div class="block">
+            <p><span class="td_1">@(item.PName == "" ? "未填写" : item.PName)：</span><span class="td_2">@item.Telephone</span></p>
+            <p><span class="td_1"></span><span class="td_2">@item.IDCardNo</span></p>
+            <p><span class="td_1"></span><span class="td_2">@item.GroupName</span></p>
+        </div>
+    }
+
+
+@*<div class="btn_zc">确<em class="em2"></em>定</div>*@

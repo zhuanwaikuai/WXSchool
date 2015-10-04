@@ -40,6 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CurrentUserVM.cs" />
+    <Compile Include="Meeting\RegistrationInfo.cs" />
     <Compile Include="PagerVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WeiXin\TemplateMsg.cs" />
@@ -47,6 +48,12 @@
     <Compile Include="WeiXin\WeiXinUser.cs" />
     <Compile Include="WeiXin\WeiXinUserToken.cs" />
     <Compile Include="WeiXin\WXJsApiTicketModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WXSchool.Model\WXSchool.Model.csproj">
+      <Project>{DBFA43F2-1914-4500-A67B-D51D57A913DF}</Project>
+      <Name>WXSchool.Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

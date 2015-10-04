@@ -16,7 +16,7 @@ namespace WXSchool.Site.PC.Controllers
             //{
             //}
 
-            return RedirectToAction("Index", "School");
+            return RedirectToAction("Index", "Hotel");
         }
 
     }

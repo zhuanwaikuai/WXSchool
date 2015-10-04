@@ -45,6 +45,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Mee\HotelRespository.cs" />
+    <Compile Include="Mee\ParticipantsRespository.cs" />
+    <Compile Include="Mee\RegistrationsRespository.cs" />
     <Compile Include="PagerRespository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Stu\StudentBindingRespository.cs" />

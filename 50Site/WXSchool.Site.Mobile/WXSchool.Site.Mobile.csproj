@@ -123,6 +123,8 @@
   <ItemGroup>
     <Compile Include="App_Start\IocConfig.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\MeetingController.cs" />
+    <Compile Include="Controllers\ParticipantsController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="Controllers\WeiXinController.cs" />
     <Compile Include="Global.asax.cs">
@@ -135,12 +137,25 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Content Include="Global.asax" />
+    <Content Include="Images\meeting\jian.png" />
+    <Content Include="Images\meeting\page_1.jpg" />
+    <Content Include="Images\meeting\page_2.jpg" />
+    <Content Include="Images\meeting\page_3.jpg" />
+    <Content Include="Scripts\city.js" />
+    <Content Include="Scripts\participants.js" />
+    <Content Include="Scripts\registrate.js" />
     <Content Include="Scripts\base.js" />
     <Content Include="Scripts\dialog.js" />
     <Content Include="Scripts\slide.1.0.js" />
+    <Content Include="Scripts\huaping.js" />
+    <Content Include="Scripts\touch.js" />
     <Content Include="Scripts\zepto.js" />
     <Content Include="Scripts\zepto.min.js" />
+    <Content Include="Styles\registrate.css" />
+    <Content Include="Styles\registrate_preview.css" />
     <Content Include="Styles\base.css" />
+    <Content Include="Styles\huaping.css" />
+    <Content Include="Styles\participants.css" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -151,7 +166,7 @@
     <Content Include="Views\Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Images\" />
+    <Content Include="Views\Meeting\Registrate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -196,6 +211,18 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Student\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Meeting\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Participants\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Participants\Edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Meeting\Preview.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

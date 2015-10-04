@@ -1,0 +1,112 @@
+﻿@{
+    ViewBag.Title = "填写报名信息";
+}
+
+@section styles{
+    <link href="@Url.Content("~/Styles/registrate.css?v=1")" rel="stylesheet" />
+}
+
+<div class="page page_1">
+    <ul>
+        <li>
+            <h2>填写报名信息</h2>
+        </li>
+
+        <li>
+            <div class="td_1">所在地区：</div>
+            <div class="td_2">
+                <input id="city" class="red" value="请选择所在地区" tip="请选择所在地区" readonly="readonly" maxlength="30" />
+            </div>
+        </li>
+
+        <li>
+            <div class="td_1">单位名称：</div>
+            <div class="td_2">
+                <input id="company" class="red input_verify" value="请输入单位名称" tip="请输入单位名称" maxlength="30" />
+            </div>
+        </li>
+
+        <li>
+            <div class="td_1">参会人数：</div>
+            <div class="td_2">
+                <div id="participant" class="select_num" data-min="1" data-max="10" data-num="1">
+                    <span class="sub_num red">-</span>
+                    <span class="num">1</span>
+                    <span class="add_num">+</span>
+                </div>
+            </div>
+        </li>
+
+        <li>
+            <div class="td_1">是否代预定酒店：</div>
+            <div class="td_2">
+                <div id="select_hotel" class="radio_box select_hotel" data-type="0">
+                    <label class="radio radio_selected"><span>是</span></label>
+                    <label class="radio"><span>否</span></label>
+                </div>
+            </div>
+        </li>
+
+        <li class="hotel_info">
+            <div class="td_1">酒店：</div>
+            <div class="td_2">
+                <span class="select_txt red">请选择酒店</span>
+                <select id="hotel" class="select_year select_opacity">
+                    <option>请选择酒店</option>
+                    <option value="张家港国贸酒店（300元标准）" data-id="1">张家港国贸酒店（300元标准）（剩余房间：20间）</option>
+                    <option value="张家港国贸酒店（400元标准）" data-id="2">张家港国贸酒店（400元标准）（剩余房间：20间）</option>
+                </select>
+                <em class="jain"></em>
+            </div>
+        </li>
+
+        <li class="hotel_info">
+            <div class="td_1">房间数量：</div>
+            <div class="td_2">
+                <input type="tel" id="hotel_num" class="red input_verify" value="请输入房间数量" tip="请输入房间数量" maxlength="2" />
+            </div>
+        </li>
+
+        <li class="hotel_info">
+            <div class="td_1">住宿天数：</div>
+            <div class="td_2">
+                <div id="days" class="select_num" data-min="1" data-max="10" data-num="1">
+                    <span class="sub_num red">-</span>
+                    <span class="num">1</span>
+                    <span class="add_num">+</span>
+                </div>
+            </div>
+        </li>
+
+        <li class="no_tips">
+            <p>显示一段文字，提示餐饮和车辆不再安排，现场报名地点在xxx</p>
+        </li>
+
+        <li>
+            <div class="td_1">9日晚是否留下用餐：</div>
+            <div class="td_2">
+                <div id="dining" class="radio_box" data-type="0">
+                    <label class="radio radio_selected"><span>是</span></label>
+                    <label class="radio"><span>否</span></label>
+                </div>
+            </div>
+        </li>
+
+    </ul>
+    <div class="btn_zc">下一页</div>
+</div>
+<!-- 选择地区 -->
+<div class="page page_2">
+    <div class="first_box"></div>
+    <div class="second_box"></div>
+    <div class="third_box"></div>
+</div>
+
+@section scripts{
+    <script src="@Url.Content("~/scripts/city.js")"></script>
+    <script src="@Url.Content("~/scripts/touch.js")"></script>
+    <script src="@Url.Content("~/scripts/registrate.js")"></script>
+    <script>
+        
+    </script>
+}
