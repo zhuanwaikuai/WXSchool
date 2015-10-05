@@ -15,13 +15,6 @@
     var jian = document.querySelector(".jian");
     init();
 
-    document.querySelector(".mbtn").addEventListener("click", function ()
-    {
-        location.href = "../Meeting/Registrate";
-    }, false);
-
-
-
     function init()
     {
         logIndex.forEach(function (n, i)

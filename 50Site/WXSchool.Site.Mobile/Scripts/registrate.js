@@ -155,6 +155,8 @@
             success: function (data) {
                 if (data.ResultType == 200) {
                     location.href = '../Participants/Index?regId=' + data.AppendData;
+                } else {
+                    dialog.alert("操作失败", data.Message, "知道了");
                 }
             }
         });

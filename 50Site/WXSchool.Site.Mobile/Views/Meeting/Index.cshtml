@@ -48,6 +48,11 @@
         <div class="jian"></div>
     </div>
     <script src="@Url.Content("~/Scripts/huaping.js")"></script>
+    <script>
+        document.querySelector(".mbtn").addEventListener("click", function () {
+            location.href = '@Url.Action("Registrate")';
+        }, false);
+    </script>
 </body>
 </html>
 

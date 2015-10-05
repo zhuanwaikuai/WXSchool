@@ -47,11 +47,48 @@ namespace WXSchool.Bll.Mee
             string msg = "操作成功";
             try
             {
+                HotelBiz hotelBiz = ClassFactory.GetInstance<HotelBiz>();
+                Hotel hotel = hotelBiz.GetHotel(registration.HotelId);
+                //剩余房间
+                int surplus = hotel.TotalRooms - hotel.BookedRooms;
+
                 if (registration.RegId > 0)
                 {
                     var old = _respository.GetEntityById(registration.RegId);
-                    if (old!=null)
+                    if (old != null)
                     {
+                        #region 酒店房间校验
+                        //酒店房间校验：换酒店
+                        if (registration.HotelId != old.HotelId)
+                        {
+                            if (registration.BookedRooms > surplus)
+                            {
+                                return new OperationResult(OperationResultType.Error, string.Format("房间不足，还剩{0}间", surplus));
+                            }
+
+                            //更新已订房间数
+                            hotel.BookedRooms += registration.BookedRooms;
+                            hotelBiz.Edit(hotel);
+                            //老酒店，退房间
+                            Hotel oldHotel = hotelBiz.GetHotel(old.HotelId);
+                            oldHotel.BookedRooms -= old.BookedRooms;
+                            hotelBiz.Edit(oldHotel);
+                        }
+                        //酒店房间校验：原酒店，房间数变动
+                        else if (registration.BookedRooms != old.BookedRooms)
+                        {
+                            if (registration.BookedRooms - old.BookedRooms > surplus)
+                            {
+                                return new OperationResult(OperationResultType.Error, string.Format("房间不足，还剩{0}间", surplus));
+                            }
+
+                            //更新已订房间数
+                            hotel.BookedRooms += registration.BookedRooms - old.BookedRooms;
+                            hotelBiz.Edit(hotel);
+                        }
+                        
+                        #endregion
+
                         registration.ProvinceCode = old.ProvinceCode;
                         registration.CityCode = old.CityCode;
                         registration.CountyCode = old.CountyCode;
@@ -64,9 +101,20 @@ namespace WXSchool.Bll.Mee
                 }
                 else
                 {
+                    //酒店房间校验
+                    if (registration.BookedRooms > surplus)
+                    {
+                        return new OperationResult(OperationResultType.Error, string.Format("房间不足，还剩{0}间", surplus));
+                    }
+
                     registration.CreateTime = DateTime.Now;
                     int regId = _respository.Add(registration);
                     registration.RegId = regId;
+
+                    //更新已订房间数
+                    hotel.BookedRooms += registration.BookedRooms;
+                    hotelBiz.Edit(hotel);
+
                     ParticipantsBiz pBiz = ClassFactory.GetInstance<ParticipantsBiz>();
                     for (int i = 0; i < registration.Participants; i++)
                     {
