@@ -24,9 +24,9 @@ namespace WXSchool.Bll.Mee
             return _respository.Query(registrationId);
         }
 
-        public virtual Participants GetParticipants(int regId)
+        public virtual Participants GetParticipants(int parId)
         {
-            var participant = _respository.GetEntityById(regId);
+            var participant = _respository.GetEntityById(parId);
             if (participant == null)
             {
                 participant = new Participants();

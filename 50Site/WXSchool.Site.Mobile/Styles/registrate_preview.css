@@ -7,7 +7,7 @@
 .td_1{ width: 120px;}
 .td_2{ text-align: left;}
 .block .td_1 { display: block; float: left; }
-.block .td_2 { margin-left: 120px; display: block; color: #7a7e88; word-break:break-all; }
+.block .td_2 { margin-left: 120px; display: block; word-break:break-all; }
 .em2 { margin-left: 2em; }
 .edit { float: right; color: #00b4e2; /*font-size: 19px;*/ padding-left: 10px; }
 .btn_zc { line-height: 42px; text-align: center; margin: 10px; font-size: 16px; color: white; background: #ff7a4c; }

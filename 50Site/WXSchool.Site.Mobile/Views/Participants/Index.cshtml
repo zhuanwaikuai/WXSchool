@@ -38,5 +38,8 @@
         $(".btn_ok").on("click", function () {
             location.href = '@Url.Action("Preview", "Meeting", new { ViewBag.RegId })';
         });
+        $(".btn_cancel").on("click", function () {
+            location.href = '@Url.Action("Registrate", "Meeting", new { ViewBag.RegId })';
+        });
     </script>
 }

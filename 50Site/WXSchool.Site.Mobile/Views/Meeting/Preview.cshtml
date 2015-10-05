@@ -11,7 +11,7 @@
 }
 
 <div class="block">
-    <h2><span>信息预览</span><span class="icon edit">修改</span></h2>
+    <h2><span>信息预览</span>@*<span class="icon edit">修改</span>*@</h2>
 </div>
 <div class="block">
     <p><span class="td_1">所在地区：</span><span class="td_2">@(registration.ProvinceName + registration.CityName + registration.CountyName)</span></p>
@@ -38,5 +38,14 @@
         </div>
     }
 
-
+<div class="btn_zc">有误，要修改</div>
 @*<div class="btn_zc">确<em class="em2"></em>定</div>*@
+
+@section scripts
+{
+    <script>
+        $(".btn_zc").on("click", function() {
+            location.href = '@Url.Action("Registrate",new {registration.RegId})';
+        });
+    </script>
+}

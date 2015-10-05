@@ -97,7 +97,7 @@
                             <td>@(item.Gender==1?"男":"女")</td>
                             <td>@item.Telephone</td>
                             <td class='table-action'>
-                                <a href='@Url.Action("Edit")'><i class='fa fa-pencil'></i></a>
+                                <a href='@Url.Action("Edit","Participants",new{item.ParId})'><i class='fa fa-pencil'></i></a>
                             </td>
                         </tr>
                     }

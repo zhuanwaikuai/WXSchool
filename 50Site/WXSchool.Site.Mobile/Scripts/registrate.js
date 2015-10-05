@@ -61,6 +61,8 @@
     });
 
     var addData = { proId: "", proName: "", cityID: "", cityName: "", areaId: "", areaName: "" };//存储公司的地址
+    window.data = addData;
+
     //选择省份
     $(".first_box").html(getList(0)).delegate("p", "click", function () {
         $(this).parent().find("p").removeClass("selected");
@@ -109,17 +111,24 @@
         }
     });
 
-    var maxHotelNum = 4;
+    //var maxHotelNum = 4;
     //酒店数量
-    $("#hotel_num").on("input", function () {
-        var num = parseInt($(this).val(), 10) || 1;
-        if (num > maxHotelNum) { num = maxHotelNum; }
-        $(this).val(num);
-    });
+    //$("#hotel_num").on("input", function () {
+    //    var num = parseInt($(this).val(), 10) || 1;
+    //    if (num > maxHotelNum) { num = maxHotelNum; }
+    //    $(this).val(num);
+    //});
 
 
     //提交
     $(".btn_zc").on("click", function () {
+        if ($("span").hasClass("red")
+                || $(".input_verify").hasClass("red")) {
+            dialog.alert("操作失败", "请先完善报名信息！", "知道了");
+            return;
+        }
+
+        var regId = $("#regId").val();
         //地址
         var address = $("#city").val().replace($("#city").attr("tip"), "");//addData
         //单位
@@ -142,7 +151,7 @@
         $.ajax({
             url: '../Meeting/Registrate',
             type: 'post',
-            data: { ProvinceCode: addData.proId, ProvinceName: addData.proName, CityCode: addData.cityID, CityName: addData.cityName, CountyCode: addData.areaId, CountyName: addData.areaName, OrganizationName: company, Participants: participant, IsBooking: selectHotel, HotelId: hotel_id, HotelName: hotel, BookedRooms: hotel_num, LodgingDays: days, HaveMeals: dining },
+            data: { RegId:regId,ProvinceCode: addData.proId, ProvinceName: addData.proName, CityCode: addData.cityID, CityName: addData.cityName, CountyCode: addData.areaId, CountyName: addData.areaName, OrganizationName: company, Participants: participant, IsBooking: selectHotel, HotelId: hotel_id, HotelName: hotel, BookedRooms: hotel_num, LodgingDays: days, HaveMeals: dining },
             success: function (data) {
                 if (data.ResultType == 200) {
                     location.href = '../Participants/Index?regId=' + data.AppendData;

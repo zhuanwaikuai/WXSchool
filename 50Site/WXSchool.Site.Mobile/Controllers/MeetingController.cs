@@ -18,9 +18,20 @@ namespace WXSchool.Site.Mobile.Controllers
             return View();
         }
 
-        public ActionResult Registrate()
+        public ActionResult Registrate(int regId=0)
         {
-            return View();
+            Registrations registration = _biz.GetRegistration(regId);
+            if (regId == 0)
+            {
+                registration = new Registrations()
+                {
+                    OrganizationName = "",
+                    HotelName = "",
+                    IsBooking = 1,
+                    HaveMeals = 1
+                };
+            }
+            return View(registration);
         }
 
         [HttpPost]

@@ -52,6 +52,7 @@
     <Compile Include="SysAccessToken.cs" />
     <Compile Include="SysOrganization.cs" />
     <Compile Include="SysUser.cs" />
+    <Compile Include="Sys\SysParameters.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

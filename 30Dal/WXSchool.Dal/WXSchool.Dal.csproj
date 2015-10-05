@@ -53,6 +53,7 @@
     <Compile Include="Stu\StudentBindingRespository.cs" />
     <Compile Include="Stu\StudentInfoRespository.cs" />
     <Compile Include="Sys\SysAccessTokenRespository.cs" />
+    <Compile Include="Sys\SysParametersRespository.cs" />
     <Compile Include="Sys\SysUserRespository.cs" />
   </ItemGroup>
   <ItemGroup>

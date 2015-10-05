@@ -1,11 +1,12 @@
-﻿@{
+﻿@model WXSchool.Model.Meeting.Registrations
+@{
     ViewBag.Title = "填写报名信息";
 }
 
 @section styles{
     <link href="@Url.Content("~/Styles/registrate.css?v=1")" rel="stylesheet" />
 }
-
+<input type="hidden" id="regId" value="@Model.RegId" />
 <div class="page page_1">
     <ul>
         <li>
@@ -15,14 +16,22 @@
         <li>
             <div class="td_1">所在地区：</div>
             <div class="td_2">
-                <input id="city" class="red" value="请选择所在地区" tip="请选择所在地区" readonly="readonly" maxlength="30" />
+                @if (string.IsNullOrWhiteSpace(Model.ProvinceCode))
+                {
+                    <input id="city" class="red input_verify" value="请选择所在地区" tip="请选择所在地区" readonly="readonly" maxlength="30" />
+                }
+                else
+                {
+                    var area = Model.ProvinceName + Model.CityName + Model.CountyName;
+                    <input id="city" value="@area" tip="请选择所在地区" readonly="readonly" maxlength="30" />
+                }
             </div>
         </li>
 
         <li>
             <div class="td_1">单位名称：</div>
             <div class="td_2">
-                <input id="company" class="red input_verify" value="请输入单位名称" tip="请输入单位名称" maxlength="30" />
+                <input id="company" class="red input_verify" value="@(Model.OrganizationName == "" ? "请输入单位名称" : Model.OrganizationName)" tip="请输入单位名称" maxlength="30" />
             </div>
         </li>
 
@@ -31,7 +40,7 @@
             <div class="td_2">
                 <div id="participant" class="select_num" data-min="1" data-max="10" data-num="1">
                     <span class="sub_num red">-</span>
-                    <span class="num">1</span>
+                    <span class="num">@(Model.Participants == 0 ? 1 : Model.Participants)</span>
                     <span class="add_num">+</span>
                 </div>
             </div>
@@ -41,8 +50,8 @@
             <div class="td_1">是否代预定酒店：</div>
             <div class="td_2">
                 <div id="select_hotel" class="radio_box select_hotel" data-type="0">
-                    <label class="radio radio_selected"><span>是</span></label>
-                    <label class="radio"><span>否</span></label>
+                    <label class="radio @(Model.IsBooking == 1 ? "radio_selected" : "")"><span>是</span></label>
+                    <label class="radio @(Model.IsBooking == 0 ? "radio_selected" : "")"><span>否</span></label>
                 </div>
             </div>
         </li>
@@ -50,11 +59,10 @@
         <li class="hotel_info">
             <div class="td_1">酒店：</div>
             <div class="td_2">
-                <span class="select_txt red">请选择酒店</span>
+                <span class="select_txt red">@(Model.HotelName == "" ? "请选择酒店" : Model.HotelName)</span>
                 <select id="hotel" class="select_year select_opacity">
                     <option>请选择酒店</option>
-                    <option value="张家港国贸酒店（300元标准）" data-id="1">张家港国贸酒店（300元标准）（剩余房间：20间）</option>
-                    <option value="张家港国贸酒店（400元标准）" data-id="2">张家港国贸酒店（400元标准）（剩余房间：20间）</option>
+                    @Html.Action("SelectOption", "Hotel", new { selectedId = Model.HotelId })
                 </select>
                 <em class="jain"></em>
             </div>
@@ -63,7 +71,7 @@
         <li class="hotel_info">
             <div class="td_1">房间数量：</div>
             <div class="td_2">
-                <input type="tel" id="hotel_num" class="red input_verify" value="请输入房间数量" tip="请输入房间数量" maxlength="2" />
+                <input type="tel" id="hotel_num" class="red input_verify" value="@(Model.BookedRooms)" tip="请输入房间数量" maxlength="2" />
             </div>
         </li>
 
@@ -72,7 +80,7 @@
             <div class="td_2">
                 <div id="days" class="select_num" data-min="1" data-max="10" data-num="1">
                     <span class="sub_num red">-</span>
-                    <span class="num">1</span>
+                    <span class="num">@(Model.LodgingDays == 0 ? 1 : Model.LodgingDays)</span>
                     <span class="add_num">+</span>
                 </div>
             </div>
@@ -86,8 +94,8 @@
             <div class="td_1">9日晚是否留下用餐：</div>
             <div class="td_2">
                 <div id="dining" class="radio_box" data-type="0">
-                    <label class="radio radio_selected"><span>是</span></label>
-                    <label class="radio"><span>否</span></label>
+                    <label class="radio @(Model.HaveMeals == 1 ? "radio_selected" : "")"><span>是</span></label>
+                    <label class="radio @(Model.HaveMeals == 0 ? "radio_selected" : "")"><span>否</span></label>
                 </div>
             </div>
         </li>
@@ -107,6 +115,15 @@
     <script src="@Url.Content("~/scripts/touch.js")"></script>
     <script src="@Url.Content("~/scripts/registrate.js")"></script>
     <script>
-        
+        window.data.proId = '@Model.ProvinceCode';
+        window.data.proName = '@Model.ProvinceName';
+        window.data.cityID = '@Model.CityCode';
+        window.data.cityName = '@Model.CityName';
+        window.data.areaId = '@Model.CountyCode';
+        window.data.areaName = '@Model.CountyName';
+        if ('@Model.RegId' != '0') {
+            $("span").removeClass("red");
+            $(".input_verify").removeClass("red");
+        }
     </script>
 }

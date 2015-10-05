@@ -17,7 +17,7 @@
 
     document.querySelector(".mbtn").addEventListener("click", function ()
     {
-        alert("s");
+        location.href = "../Meeting/Registrate";
     }, false);
 
 

@@ -19,11 +19,10 @@
         <li>
             <div class="td_1">组别：</div>
             <div class="td_2">
-                <span class="select_txt red">请选择组别</span>
+                <span class="select_txt red">@(Model.GroupName == "" ? "请选择组别" : Model.GroupName)</span>
                 <select id="group" class="select_year select_opacity">
                     <option>请选择组别</option>
-                    <option value="小学语文" data-id="1">小学语文</option>
-                    <option value="小学数学" data-id="2">小学数学</option>
+                    @Html.Action("SelectOption", "System", new { groupId=1, selectedId = Model.GroupCode })
                 </select>
                 <em class="jain"></em>
             </div>
@@ -32,14 +31,14 @@
         <li>
             <div class="td_1">姓名：</div>
             <div class="td_2">
-                <input class="red input_verify" value="@(Model.PName == "" ? "请输入姓名" : Model.PName)" tip="@(Model.PName == "" ? "请输入姓名" : Model.PName)" maxlength="30" id="pName" />
+                <input class="red input_verify" value="@(Model.PName == "" ? "请输入姓名" : Model.PName)" tip="请输入姓名" maxlength="30" id="pName" />
             </div>
         </li>
 
         <li>
             <div class="td_1">身份证号码：</div>
             <div class="td_2">
-                <input id="icard" class="red input_verify" value="@(Model.IDCardNo == "" ? "请输入身份证号码" : Model.IDCardNo)" tip="@(Model.IDCardNo == "" ? "请输入身份证号码" : Model.IDCardNo)" maxlength="18" />
+                <input id="icard" class="red input_verify" value="@(Model.IDCardNo == "" ? "请输入身份证号码" : Model.IDCardNo)" tip="请输入身份证号码" maxlength="18" />
             </div>
         </li>
 
@@ -56,7 +55,7 @@
         <li class="hotel_info">
             <div class="td_1">手机号码：</div>
             <div class="td_2">
-                <input id="phone" class="red input_verify" value="@(Model.Telephone == "" ? "请输入手机号码" : Model.Telephone)" tip="@(Model.Telephone == "" ? "请输入手机号码" : Model.Telephone)" maxlength="11" />
+                <input id="phone" class="red input_verify" value="@(Model.Telephone == "" ? "请输入手机号码" : Model.Telephone)" tip="请输入手机号码" maxlength="11" />
             </div>
         </li>
     </ul>
@@ -70,6 +69,9 @@
 @section scripts{
     <script src="@Url.Content("~/scripts/participants.js")"></script>
     <script>
-
+        if ('@Model.PName' != '') {
+            $("span").removeClass("red");
+            $(".input_verify").removeClass("red");
+        }
     </script>
 }

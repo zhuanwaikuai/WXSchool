@@ -94,6 +94,12 @@
     });
     //确定
     $(".btn_ok").on("click", function () {
+        if ($("span").hasClass("red")
+                || $(".input_verify").hasClass("red")) {
+            dialog.alert("操作失败", "请先完善人员信息！", "知道了");
+            return;
+        }
+
         var parId = $("#parId").val();
         var regId = $("#regId").val();
         var pName = $("#pName").val().replace($("#pName").attr("tip"), "");

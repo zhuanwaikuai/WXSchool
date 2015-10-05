@@ -42,3 +42,52 @@
         }
     </tbody>
 </table>
+
+@section scripts{
+    <script>
+            @*var doDelete = function(hid) {
+                if (confirm("确认删除此信息?")) {
+                    $.ajax({
+                        url: '@Url.Action("Delete")',
+                        type: 'post',
+                        data: { hId: hid },
+                        success: function(data) {
+                            alert(data.Message);
+                            if (data.ResultType == 200) {
+                                $("#btnQuery").click();
+                            }
+                        },
+                        error: function(e) {
+                            alert("系统繁忙，请稍后再试！");
+                        },
+                        complete: function() {
+                        }
+                    });
+                }
+
+                return false;
+            };*@
+            var doQuery = function () {
+                var orgName = $("#txtName").val();
+                $.ajax({
+                    url: '@Url.Action("Search")',
+                    type: 'get',
+                    data: { orgName: orgName },
+                    success: function (data) {
+                        $(".table tbody").empty();
+                        $(".table tbody").html(data);
+                    },
+                    error: function (e) {
+                        alert("系统繁忙，请稍后再试！");
+                    },
+                    complete: function () {
+                    }
+                });
+            };
+            $().ready(function () {
+                $("#btnQuery").click(function () {
+                    doQuery();
+                });
+            });
+    </script>
+}
