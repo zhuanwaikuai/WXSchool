@@ -4,7 +4,7 @@
 }
 
 @section styles{
-    <link href="@Url.Content("~/Styles/registrate.css?v=1")" rel="stylesheet" />
+    <link href="@Url.Content("~/Styles/registrate.css?v=2")" rel="stylesheet" />
 }
 <input type="hidden" id="regId" value="@Model.RegId" />
 <div class="page page_1">
@@ -27,18 +27,35 @@
                 }
             </div>
         </li>
-
         <li>
-            <div class="td_1">单位名称：</div>
+            <div class="td_1">类别：</div>
             <div class="td_2">
-                <input id="company" class="red input_verify" value="@(Model.OrganizationName == "" ? "请输入单位名称" : Model.OrganizationName)" tip="请输入单位名称" maxlength="30" />
+                <span id="group_span" class="select_txt red">@(Model.GroupName == "" ? "请选择类别" : Model.GroupName)</span>
+                <select id="group" class="select_year select_opacity">
+                    <option>请选择类别</option>
+                    @{
+                        string[] groups = { "小学", "中学", "职教" };
+                        for (int g = 0; g < groups.Length; g++)
+                        {
+                            <option value="@groups[g]" data-id="@(g+1)" @(Model
+                    .GroupCode == (g + 1).ToString() ? "selected" : "")>@groups[g]</option>
+                        }
+                    }
+                </select>
+                <em class="jain"></em>
+            </div>
+        </li>
+        <li>
+            <div class="td_1">单位名称(全称)：</div>
+            <div class="td_2">
+                <input id="company" class="red input_verify" value="@(Model.OrganizationName == "" ? "请输入单位全称" : Model.OrganizationName)" tip="请输入单位全称" maxlength="30" />
             </div>
         </li>
 
         <li>
             <div class="td_1">参会人数：</div>
             <div class="td_2">
-                <div id="participant" class="select_num" data-min="1" data-max="10" data-num="1">
+                <div id="participant" class="select_num" data-min="1" data-max="100" data-num="@(Model.Participants == 0 ? 1 : Model.Participants)">
                     <span class="sub_num">-</span>
                     <span class="num">@(Model.Participants == 0 ? 1 : Model.Participants)</span>
                     <span class="add_num">+</span>
@@ -49,7 +66,7 @@
         <li>
             <div class="td_1">是否代预定酒店：</div>
             <div class="td_2">
-                <div id="select_hotel" class="radio_box select_hotel" data-type="0">
+                <div id="select_hotel" class="radio_box select_hotel" data-type="@(Model.IsBooking == 1?"0":"1")">
                     <label class="radio @(Model.IsBooking == 1 ? "radio_selected" : "")"><span>是</span></label>
                     <label class="radio @(Model.IsBooking == 0 ? "radio_selected" : "")"><span>否</span></label>
                 </div>
@@ -57,12 +74,12 @@
         </li>
 
         <li class="hotel_info">
-            <div class="td_1">酒店：</div>
+            <div class="td_1">酒店(均价260~340元)：</div>
             <div class="td_2">
-                <span class="select_txt red">@(Model.HotelName == "" ? "请选择酒店" : Model.HotelName)</span>
+                <span id="hotel_span" class="select_txt red">@(Model.HotelName == "" ? "请选择酒店" : Model.HotelName)</span>
                 <select id="hotel" class="select_year select_opacity">
                     <option>请选择酒店</option>
-                    @Html.Action("SelectOption", "Hotel", new { selectedId = Model.HotelId })
+                    @Html.Action("SelectOption", "Hotel", new {selectedId = Model.HotelId})
                 </select>
                 <em class="jain"></em>
             </div>
@@ -71,14 +88,19 @@
         <li class="hotel_info">
             <div class="td_1">房间数量：</div>
             <div class="td_2">
-                <input type="tel" id="hotel_num" class="red input_verify" value="@(Model.BookedRooms)" tip="请输入房间数量" maxlength="2" />
+                @*<input type="tel" id="hotel_num" class="red input_verify" value="@(Model.BookedRooms)" tip="请输入房间数量" maxlength="2" />*@
+                <div id="hotel_num" class="select_num" data-min="1" data-max="100" data-num="@(Model.BookedRooms == 0 ? 1 : Model.BookedRooms)">
+                    <span class="sub_num">-</span>
+                    <span class="num">@(Model.BookedRooms == 0 ? 1 : Model.BookedRooms)</span>
+                    <span class="add_num">+</span>
+                </div>
             </div>
         </li>
 
         <li class="hotel_info">
             <div class="td_1">住宿天数：</div>
             <div class="td_2">
-                <div id="days" class="select_num" data-min="1" data-max="10" data-num="1">
+                <div id="days" class="select_num" data-min="1" data-max="100" data-num="@(Model.LodgingDays == 0 ? 1 : Model.LodgingDays)">
                     <span class="sub_num">-</span>
                     <span class="num">@(Model.LodgingDays == 0 ? 1 : Model.LodgingDays)</span>
                     <span class="add_num">+</span>
@@ -87,10 +109,10 @@
         </li>
 
         <li class="no_tips">
-            <p>显示一段文字，提示餐饮和车辆不再安排，现场报名地点在xxx</p>
+            <p>住宿自理的参会人员报名地点在张家港市实验小学南校区，地点：张家港市小菜巷路1号，联系电话：（0512）58996301。会议期间市内交通自理，会务组不再统一安排车辆接送。</p>
         </li>
 
-        <li>
+        @*<li>
             <div class="td_1">9日晚是否留下用餐：</div>
             <div class="td_2">
                 <div id="dining" class="radio_box" data-type="0">
@@ -98,7 +120,7 @@
                     <label class="radio @(Model.HaveMeals == 0 ? "radio_selected" : "")"><span>否</span></label>
                 </div>
             </div>
-        </li>
+        </li>*@
 
     </ul>
     <div class="btn_zc">下一页</div>
@@ -113,7 +135,7 @@
 @section scripts{
     <script src="@Url.Content("~/scripts/city.js")"></script>
     <script src="@Url.Content("~/scripts/touch.js")"></script>
-    <script src="@Url.Content("~/scripts/registrate.js")"></script>
+    <script src="@Url.Content("~/scripts/registrate.js?v=4")"></script>
     <script>
         window.data.proId = '@Model.ProvinceCode';
         window.data.proName = '@Model.ProvinceName';
@@ -124,6 +146,13 @@
         if ('@Model.RegId' != '0') {
             $("span").removeClass("red");
             $(".input_verify").removeClass("red");
+
+            if ('@Model.IsBooking'=='0') {
+                $(".hotel_info").hide();
+                $(".no_tips").show();
+                $("#hotel_span").removeClass("red");
+                $("#hotel_num").removeClass("red");
+            }
         }
     </script>
 }

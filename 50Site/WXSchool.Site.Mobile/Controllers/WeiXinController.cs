@@ -22,17 +22,11 @@ namespace WXSchool.Site.Mobile.Controllers
                 return Content("授权失败");
             }
 
-            string appId = Cookie.GetValue(CookieKeyAppId);
-            string appSecret = Cookie.GetValue(CookieKeyAppSecret);
-            if (string.IsNullOrWhiteSpace(appId) || string.IsNullOrWhiteSpace(appSecret))
-            {
-                return Content("读取相关cookie失败");
-            }
-            string openId = WeiXinBiz.GetOpenId(code,appId,appSecret);
+            string openId = WeiXinBiz.GetOpenId(code);
             if (!string.IsNullOrWhiteSpace(openId))
             {
-                var cookie = new HttpCookie(CookieKeyOpenId, openId);
-                cookie.Expires = DateTime.Now.AddDays(15);
+                HttpCookie cookie = new HttpCookie(CookieKeyOpenId, openId);
+                cookie.Expires = DateTime.Now.AddMonths(1);
                 Cookie.Save(cookie);
 
                 return Redirect(reurl);

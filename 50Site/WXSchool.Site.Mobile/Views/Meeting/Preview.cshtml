@@ -7,7 +7,7 @@
 }
 
 @section styles{
-    <link href="@Url.Content("~/Styles/registrate_preview.css?v=1")" rel="stylesheet" />
+    <link href="@Url.Content("~/Styles/registrate_preview.css?v=3")" rel="stylesheet" />
 }
 
 <div class="block">
@@ -15,7 +15,8 @@
 </div>
 <div class="block">
     <p><span class="td_1">所在地区：</span><span class="td_2">@(registration.ProvinceName + registration.CityName + registration.CountyName)</span></p>
-    <p><span class="td_1">单位名称：</span><span class="td_2">@(registration.OrganizationName)</span></p>
+    <p><span class="td_1">类别：</span><span class="td_2">@(registration.GroupName)</span></p>
+    <p><span class="td_1">单位名称(全称)：</span><span class="td_2">@(registration.OrganizationName)</span></p>
     <p><span class="td_1">参会人数：</span><span class="td_2">@(registration.Participants)</span></p>
     <p><span class="td_1">代预定酒店：</span><span class="td_2">@(registration.IsBooking==1?"是":"否")</span></p>
     @if (registration.IsBooking == 1)
@@ -24,7 +25,7 @@
         <p><span class="td_1">房间数量：</span><span class="td_2">@(registration.BookedRooms)</span></p>
         <p><span class="td_1">住宿天数：</span><span class="td_2">@(registration.LodgingDays)</span></p>
     }
-    <p><span class="td_1">9日晚留下用餐：</span><span class="td_2">@(registration.HaveMeals == 1 ? "是" : "否")</span></p>
+    @*<p><span class="td_1">9日晚留下用餐：</span><span class="td_2">@(registration.HaveMeals == 1 ? "是" : "否")</span></p>*@
     
 </div>
 
@@ -37,15 +38,35 @@
             <p><span class="td_1"></span><span class="td_2">@item.GroupName</span></p>
         </div>
     }
+<div class="btn_box">
+    <div class="btn_cancel" id="cancel">有误，要修改</div>
+    <div class="btn_ok" id="submit">无误，要提交</div>
+</div>
 
-<div class="btn_zc">有误，要修改</div>
-@*<div class="btn_zc">确<em class="em2"></em>定</div>*@
+    @*<div class="btn_zc">确<em class="em2"></em>定</div>*@
 
-@section scripts
+    @section scripts
 {
-    <script>
-        $(".btn_zc").on("click", function() {
-            location.href = '@Url.Action("Registrate",new {registration.RegId})';
-        });
-    </script>
-}
+        <script>
+            $("#cancel").on("click", function () {
+                location.href = '@Url.Action("Registrate",new {registration.RegId})';
+            });
+            $("#submit").on("click", function () {
+                dialog.conform("确认", "提交后，信息将不能再修改", "取消", "提交", function () { }, function () {
+                    $.ajax({
+                        url: '@Url.Action("Submit")',
+                        type: 'post',
+                        data: { RegId: '@registration.RegId' },
+                        success: function (data) {
+                            dialog.alert("操作结果", data.Message, "", function () {
+                                if (data.ResultType == 200) {
+                                    location.href = '@Url.Action("Index","Pay")';
+                                }
+                            });
+                        }
+                    });
+                });
+
+            });
+        </script>
+    }

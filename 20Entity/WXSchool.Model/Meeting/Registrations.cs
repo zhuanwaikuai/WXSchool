@@ -153,6 +153,26 @@ namespace WXSchool.Model.Meeting
             set;
             get;
         }
+        /// <summary>
+        /// 状态：0 草稿，10 提交
+        /// </summary>
+        public int Status { set; get; }
+        /// <summary>
+        /// 组别
+        /// </summary>
+        public string GroupCode
+        {
+            set;
+            get;
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        public string GroupName
+        {
+            set;
+            get;
+        }
         #endregion Model
 
     }

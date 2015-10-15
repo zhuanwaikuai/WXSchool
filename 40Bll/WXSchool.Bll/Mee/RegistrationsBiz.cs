@@ -42,6 +42,26 @@ namespace WXSchool.Bll.Mee
             return registration;
         }
 
+        public virtual Registrations GetUserRegistrations(string openId)
+        {
+            IEnumerable<Registrations> list = _respository.Query(openId);
+            if (list==null || !list.Any())
+            {
+                return null;
+            }
+
+            return list.First();
+        }
+
+        public virtual OperationResult Submit(int regId)
+        {
+            var registration = _respository.GetEntityById(regId);
+            registration.Status = 10;
+            _respository.Modify(registration);
+
+            return new OperationResult(OperationResultType.Success, "操作成功");
+        }
+
         public virtual OperationResult Edit(Registrations registration)
         {
             string msg = "操作成功";
@@ -51,6 +71,14 @@ namespace WXSchool.Bll.Mee
                 Hotel hotel = hotelBiz.GetHotel(registration.HotelId);
                 //剩余房间
                 int surplus = hotel.TotalRooms - hotel.BookedRooms;
+
+                if (registration.IsBooking == 0)
+                {
+                    registration.BookedRooms = 0;
+                    registration.LodgingDays = 0;
+                    registration.HotelId = 0;
+                    registration.HotelName = "";
+                }
 
                 if (registration.RegId > 0)
                 {
@@ -97,6 +125,26 @@ namespace WXSchool.Bll.Mee
                         registration.MeetingId = old.MeetingId;
 
                         _respository.Modify(registration);
+
+                        //人员数发生改变
+                        if (registration.Participants!=old.Participants)
+                        {
+                            ParticipantsBiz pBiz = ClassFactory.GetInstance<ParticipantsBiz>();
+                            pBiz.Delete(registration.RegId);
+                            for (int i = 0; i < registration.Participants; i++)
+                            {
+                                var par = new Participants();
+                                par.RegistrationId = registration.RegId;
+                                par.OpenId = registration.OpenId;
+                                par.PName = "";
+                                par.IDCardNo = "";
+                                par.PGroupCode = registration.GroupCode;
+                                par.GroupCode = "";
+                                par.GroupName = "";
+                                par.Telephone = "";
+                                pBiz.Edit(par);
+                            }
+                        }
                     }
                 }
                 else
@@ -112,8 +160,11 @@ namespace WXSchool.Bll.Mee
                     registration.RegId = regId;
 
                     //更新已订房间数
-                    hotel.BookedRooms += registration.BookedRooms;
-                    hotelBiz.Edit(hotel);
+                    if (registration.BookedRooms>0)
+                    {
+                        hotel.BookedRooms += registration.BookedRooms;
+                        hotelBiz.Edit(hotel);
+                    }
 
                     ParticipantsBiz pBiz = ClassFactory.GetInstance<ParticipantsBiz>();
                     for (int i = 0; i < registration.Participants; i++)
@@ -123,6 +174,7 @@ namespace WXSchool.Bll.Mee
                         par.OpenId = registration.OpenId;
                         par.PName = "";
                         par.IDCardNo = "";
+                        par.PGroupCode = registration.GroupCode;
                         par.GroupCode = "";
                         par.GroupName = "";
                         par.Telephone = "";

@@ -11,10 +11,10 @@ namespace WXSchool.Site.Mobile.Controllers
 {
     public class SystemController : Controller
     {
-        public ActionResult SelectOption(int groupId, int selectedId = 0)
+        public ActionResult SelectOption(string groupId, int selectedId = 0)
         {
             var biz = ClassFactory.GetInstance<SysParametersBiz>();
-            var list = biz.GetByGroup(groupId);
+            var list = biz.GetByGroup(Convert.ToInt32(groupId));
             var sb = new StringBuilder();
             var selected = "";
             foreach (var item in list)

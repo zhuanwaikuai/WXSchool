@@ -48,8 +48,8 @@
         num = num < min ? min : num > max ? max : num;
         $parent.attr("data-num", num).find(".num").html(num);
 
-        num == min ? $parent.find(".sub_num").addClass("red") : $parent.find(".sub_num").removeClass("red");
-        num == max ? $parent.find(".add_num").addClass("red") : $parent.find(".add_num").removeClass("red");
+        //num == min ? $parent.find(".sub_num").addClass("red") : $parent.find(".sub_num").removeClass("red");
+        //num == max ? $parent.find(".add_num").addClass("red") : $parent.find(".add_num").removeClass("red");
     });
 
 
@@ -104,10 +104,15 @@
         {
             $(".hotel_info").show();
             $(".no_tips").hide();
+            if ($("#hotel").val() == '请选择酒店') {
+                $("#hotel_span").addClass("red");
+            }
         }
         else {
             $(".hotel_info").hide();
             $(".no_tips").show();
+            $("#hotel_span").removeClass("red");
+            $("#hotel_num").removeClass("red");
         }
     });
 
@@ -118,7 +123,6 @@
     //    if (num > maxHotelNum) { num = maxHotelNum; }
     //    $(this).val(num);
     //});
-
 
     //提交
     $(".btn_zc").on("click", function () {
@@ -141,17 +145,25 @@
         var hotel = $("#hotel").val();
         var hotel_id = $("#hotel option").not(function() { return !this.selected; }).attr("data-id");
         //酒店数量
-        var hotel_num = parseInt($("#hotel_num").val().replace($("#city").attr("tip"), ""), 10) || 0;
+        var hotel_num = parseInt($("#hotel_num").attr("data-num"), 10) || 0;
         //天数
         var days = parseInt($("#days").attr("data-num"), 10) || 0;
         //9日晚是否留下用餐
-        var dining = parseInt($("#dining").attr("data-type"), 10) || 0;// 0:选择 1:不选择
+        var dining = 1;//parseInt($("#dining").attr("data-type"), 10) || 0;// 0:选择 1:不选择
+        //组别
+        var group = $("#group").val();
+        var group_id = $("#group option").not(function () { return !this.selected; }).attr("data-id");
+
+        if (group_id == "3" && hotel_id!="9") {
+            dialog.alert("操作失败", "只能选择派克快捷酒店！", "知道了");
+            return;
+        }
 
         //debugger;
         $.ajax({
             url: '../Meeting/Registrate',
             type: 'post',
-            data: { RegId:regId,ProvinceCode: addData.proId, ProvinceName: addData.proName, CityCode: addData.cityID, CityName: addData.cityName, CountyCode: addData.areaId, CountyName: addData.areaName, OrganizationName: company, Participants: participant, IsBooking: selectHotel, HotelId: hotel_id, HotelName: hotel, BookedRooms: hotel_num, LodgingDays: days, HaveMeals: dining },
+            data: { RegId: regId, ProvinceCode: addData.proId, ProvinceName: addData.proName, CityCode: addData.cityID, CityName: addData.cityName, CountyCode: addData.areaId, CountyName: addData.areaName, OrganizationName: company, Participants: participant, IsBooking: selectHotel, HotelId: hotel_id, HotelName: hotel, BookedRooms: hotel_num, LodgingDays: days, HaveMeals: dining, GroupCode: group_id, GroupName: group },
             success: function (data) {
                 if (data.ResultType == 200) {
                     location.href = '../Participants/Index?regId=' + data.AppendData;

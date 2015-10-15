@@ -22,7 +22,7 @@
                 <span class="select_txt red">@(Model.GroupName == "" ? "请选择组别" : Model.GroupName)</span>
                 <select id="group" class="select_year select_opacity">
                     <option>请选择组别</option>
-                    @Html.Action("SelectOption", "System", new { groupId=1, selectedId = Model.GroupCode })
+                    @Html.Action("SelectOption", "System", new { groupId=Model.PGroupCode, selectedId = Model.GroupCode })
                 </select>
                 <em class="jain"></em>
             </div>

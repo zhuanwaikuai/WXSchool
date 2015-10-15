@@ -126,7 +126,7 @@
     <Compile Include="Controllers\HotelController.cs" />
     <Compile Include="Controllers\MeetingController.cs" />
     <Compile Include="Controllers\ParticipantsController.cs" />
-    <Compile Include="Controllers\StudentController.cs" />
+    <Compile Include="Controllers\PayController.cs" />
     <Compile Include="Controllers\SystemController.cs" />
     <Compile Include="Controllers\WeiXinController.cs" />
     <Compile Include="Global.asax.cs">
@@ -228,6 +228,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\PublishProfiles\mobile.pubxml" />
+    <Content Include="Views\Pay\Index.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

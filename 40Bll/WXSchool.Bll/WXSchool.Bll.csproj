@@ -49,8 +49,6 @@
     <Compile Include="OperationResult.cs" />
     <Compile Include="OperationResultType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Stu\StudentBiz.cs" />
-    <Compile Include="Sys\SysAccessTokenBiz.cs" />
     <Compile Include="Sys\SysParametersBiz.cs" />
     <Compile Include="Sys\SysUserBiz.cs" />
   </ItemGroup>

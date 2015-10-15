@@ -5,6 +5,7 @@ using System.Text;
 using TCBase.Saker.Core.AOP;
 using WXSchool.Dal.Mee;
 using WXSchool.Model.Meeting;
+using WXSchool.ViewModel.Meeting;
 
 namespace WXSchool.Bll.Mee
 {
@@ -22,6 +23,20 @@ namespace WXSchool.Bll.Mee
         public virtual IEnumerable<Participants> GetParticipantsList(int registrationId)
         {
             return _respository.Query(registrationId);
+        }
+
+        public virtual IEnumerable<ParticipantInfo> GetParticipants()
+        {
+            return _respository.Query();
+        }
+
+        public virtual void Delete(int registrationId)
+        {
+            var list=_respository.Query(registrationId);
+            foreach (var item in list)
+            {
+                _respository.Remove(item);
+            }
         }
 
         public virtual Participants GetParticipants(int parId)

@@ -20,7 +20,7 @@ h2:before { content: ""; display: inline-block; width: 4px; height: 12px; backgr
 .radio {  display:inline-block; }
 .radio:before { content: ""; display: inline-block; width: 10px; height: 10px; margin: 0 5px 0 20px; border: solid 5px #cfcfcf; background-color: #999; border-radius: 10px; vertical-align: middle; }
 .radio_selected:before { background-color: #ff5b0a; }
-.page_1 .no_tips {height:42px; line-height:20px; display:none; }
+.page_1 .no_tips {line-height:20px; display:none; }
 
 .select_num { float:right; padding-top:5px; overflow:hidden; }
 .select_num span { float:left; width:40px; height:30px; line-height:30px; text-align:center; border:solid 1px #ddd; font-size:20px;  }

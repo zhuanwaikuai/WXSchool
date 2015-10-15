@@ -22,7 +22,8 @@ namespace WXSchool.Site.Mobile.Controllers
                 {
                     selected = " selected='selected'";
                 }
-                sb.AppendFormat("<option data-id='{0}' value='{1}' {2}>{1} (剩余房间：{3}间)</option>", item.HId, item.HName + " (" + item.HPrice + "元标准)", selected, item.TotalRooms-item.BookedRooms);
+                //sb.AppendFormat("<option data-id='{0}' value='{1}' {2}>{1} (剩余房间：{3}间)</option>", item.HId, item.HName + " (" + item.HPrice + "元标准)", selected, item.TotalRooms-item.BookedRooms);
+                sb.AppendFormat("<option data-id='{0}' value='{1}' {2}>{1} (剩余房间：{3}间)</option>", item.HId, item.HName, selected, item.TotalRooms - item.BookedRooms);
                 selected = "";
             }
 

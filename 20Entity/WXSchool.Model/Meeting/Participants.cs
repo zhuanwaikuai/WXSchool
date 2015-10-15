@@ -73,6 +73,11 @@ namespace WXSchool.Model.Meeting
             set;
             get;
         }
+        public string PGroupCode
+        {
+            set;
+            get;
+        }
         /// <summary>
         /// 
         /// </summary>

@@ -1,6 +1,7 @@
 ﻿@model IEnumerable<WXSchool.Model.Meeting.Participants>
 @{
     ViewBag.Title = "参会人员信息";
+    var flag = "1";
 }
 
 @section styles{
@@ -14,6 +15,10 @@
         </li>
         @foreach (var item in Model)
         {
+            if (string.IsNullOrWhiteSpace(item.PName))
+            {
+                flag = "0";
+            }
             <li>
                 <div class="td_1">@(item.PName == "" ? "未填写" : item.PName)</div>
                 <div class="td_2" data-id="@item.ParId">
@@ -24,7 +29,7 @@
     </ul>
     <div class="btn_box">
         <div class="btn_cancel">上一页</div>
-        <div class="btn_ok">确定</div>
+        <div class="btn_ok">下一页</div>
     </div>
 </div>
 
@@ -35,11 +40,15 @@
             var parId = $(this).attr("data-id");
             location.href = '@Url.Action("Edit", "Participants")' + '?parId=' + parId;
         });
-        $(".btn_ok").on("click", function () {
-            location.href = '@Url.Action("Preview", "Meeting", new { ViewBag.RegId })';
+        $(".btn_ok").on("click", function() {
+            if ('@flag' == '0') {
+                dialog.alert("操作失败", "请先完善人员信息！", "知道了");
+            } else {
+                location.href = '@Url.Action("Preview", "Meeting", new {ViewBag.RegId})';
+            }
         });
-        $(".btn_cancel").on("click", function () {
-            location.href = '@Url.Action("Registrate", "Meeting", new { ViewBag.RegId })';
+        $(".btn_cancel").on("click", function() {
+            location.href = '@Url.Action("Registrate", "Meeting", new {ViewBag.RegId})';
         });
     </script>
 }

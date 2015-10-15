@@ -40,6 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CurrentUserVM.cs" />
+    <Compile Include="Meeting\ParticipantInfo.cs" />
     <Compile Include="Meeting\RegistrationInfo.cs" />
     <Compile Include="PagerVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

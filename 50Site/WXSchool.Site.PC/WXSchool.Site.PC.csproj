@@ -130,9 +130,7 @@
     <Compile Include="Controllers\ParticipantsController.cs" />
     <Compile Include="Controllers\RegistrationsController.cs" />
     <Compile Include="Controllers\SchoolController.cs" />
-    <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="Controllers\SystemController.cs" />
-    <Compile Include="Controllers\WXConfigController.cs" />
     <Compile Include="Filter\AuthAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

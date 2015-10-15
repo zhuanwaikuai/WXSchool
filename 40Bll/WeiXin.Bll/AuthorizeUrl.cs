@@ -9,9 +9,9 @@ namespace WeiXin.Bll
 {
     public class AuthorizeUrl
     {
-        private const string Oauth2Base = "https://open.weixin.qq.com/connect/oauth2/authorize?appid={1}&redirect_uri=http://m.jswxt.com/WeiXin/Oauth2Base?reurl={0}&response_type=code&scope=snsapi_base&state=1#wechat_redirect";
+        private const string Oauth2Base = "https://open.weixin.qq.com/connect/oauth2/authorize?appid={1}&redirect_uri=http://{2}/WeiXin/Oauth2Base?reurl={0}&response_type=code&scope=snsapi_base&state=1#wechat_redirect";
 
-        private const string Oauth2UserInfo = "https://open.weixin.qq.com/connect/oauth2/authorize?appid={1}&redirect_uri=http://m.jswxt.com/WeiXin/Oauth2?reurl={0}&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect";
+        private const string Oauth2UserInfo = "https://open.weixin.qq.com/connect/oauth2/authorize?appid={1}&redirect_uri=http://{2}/WeiXin/Oauth2?reurl={0}&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect";
 
         private const string AccessToken =
             "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid={0}&secret={1}";
@@ -27,8 +27,6 @@ namespace WeiXin.Bll
 
         private const string Ticket =
             "https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token={0}&type=jsapi";
-
-        private const string CustomerSend = "https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token={0}";
 
         public static string Appid
         {
@@ -46,21 +44,27 @@ namespace WeiXin.Bll
             }
         }
 
-        public static string GetOauth2BaseUrl()
+        public static string Domain
         {
-            //return string.Format(Oauth2Base, redirectUrl, Appid);
-            return Oauth2Base;
+            get
+            {
+                return AppSettingsHelper.GetString("WeixinDomain");
+            }
+        }
+
+        public static string GetOauth2BaseUrl(string redirectUrl)
+        {
+            return string.Format(Oauth2Base, redirectUrl, Appid, Domain);
         }
 
         public static string GetOauth2UserInfoUrl(string redirectUrl)
         {
-            return string.Format(Oauth2UserInfo, redirectUrl, Appid);
+            return string.Format(Oauth2UserInfo, redirectUrl, Appid, Domain);
         }
 
         public static string GetTokenUrl()
         {
-            //return string.Format(AccessToken, Appid, AppSecret);
-            return AccessToken;
+            return string.Format(AccessToken, Appid, AppSecret);
         }
 
         public static string GetMsgSendUrl(string token)
@@ -68,9 +72,9 @@ namespace WeiXin.Bll
             return string.Format(MsgSend, token);
         }
 
-        public static string GetUserTokenUrl(string code,string appid,string appSecret)
+        public static string GetUserTokenUrl(string code)
         {
-            return string.Format(UserToken, appid, appSecret, code);
+            return string.Format(UserToken, Appid, AppSecret, code);
         }
 
         public static string GetUserInfoUrl(string token, string openId)
@@ -88,9 +92,5 @@ namespace WeiXin.Bll
             return string.Format(Ticket, token);
         }
 
-        public static string GetCustomerSendUrl(string token)
-        {
-            return string.Format(CustomerSend, token);
-        }
     }
 }
