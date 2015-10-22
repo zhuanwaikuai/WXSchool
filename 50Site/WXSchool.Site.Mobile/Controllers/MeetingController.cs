@@ -40,21 +40,21 @@ namespace WXSchool.Site.Mobile.Controllers
                 Registrations reg2 = _biz.GetUserRegistrations(CurrentUser.OpenId);
                 if (reg2 != null && reg2.RegId > 0)
                 {
-                    if (DateTime.Now<new DateTime(2015,10,20))
-                    {
+                    //if (DateTime.Now<new DateTime(2015,10,20))
+                    //{
                         return RedirectToAction("Preview", new { reg2.RegId });
-                    }
-                    else
-                    {
-                        return RedirectToAction("Index", "Pay");
-                    }
+                    //}
+                    //else
+                    //{
+                    //    return RedirectToAction("Index", "Pay");
+                    //}
                 }
             }
             else
             {
                 registration = _biz.GetRegistration(regId);
             }
-
+            ViewBag.Total = ClassFactory.GetInstance<ParticipantsBiz>().TotoalParticipants();
             return View(registration);
         }
 
@@ -83,6 +83,19 @@ namespace WXSchool.Site.Mobile.Controllers
         {
             OperationResult result = _biz.Submit(regId);
             return Json(result);
+        }
+
+        public ActionResult Sign()
+        {
+            if (string.IsNullOrWhiteSpace(CurrentUser.OpenId))
+            {
+                string url = AuthorizeUrl.GetOauth2BaseUrl(Request.Url.ToString());
+                return Redirect(url);
+            }
+
+            OperationResult result = _biz.Sign(CurrentUser.OpenId);
+            ViewBag.Result = result.Message;
+            return View();
         }
     }
 }

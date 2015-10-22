@@ -30,7 +30,7 @@ namespace WXSchool.Site.Mobile.Controllers
 
             CurrentUser = new CurrentUserVM
             {
-                OpenId = "oPHmajv6OJYI67ihpr_OBfAHg9bs"//Cookie.GetValue(CookieKeyOpenId),
+                OpenId = Cookie.GetValue(CookieKeyOpenId),
             };
         }
 

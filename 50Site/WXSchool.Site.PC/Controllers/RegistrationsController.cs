@@ -62,7 +62,7 @@ namespace WXSchool.Site.PC.Controllers
             IEnumerable<ParticipantInfo> list = ClassFactory.GetInstance<ParticipantsBiz>().GetParticipants();
             sbHtml.Append("<table border='1' cellspacing='0' cellpadding='0'>");
             sbHtml.Append("<tr>");
-            var lstTitle = new List<string> { "单位", "组别", "姓名", "性别", "身份证", "手机号" };
+            var lstTitle = new List<string> { "省", "市", "县", "类别", "单位名称", "酒店", "住宿天数", "组别", "姓名", "身份证号码", "性别", "手机号" };
             foreach (var item in lstTitle)
             {
                 sbHtml.AppendFormat("<td style='font-size: 14px;text-align:center;background-color: #DCE0E2; font-weight:bold;' height='25'>{0}</td>", item);
@@ -72,11 +72,17 @@ namespace WXSchool.Site.PC.Controllers
             foreach (var item in list)
             {
                 sbHtml.Append("<tr>");
+                sbHtml.AppendFormat("<td style='font-size: 12px;height:20px;'>{0}</td>", item.ProvinceName);
+                sbHtml.AppendFormat("<td style='font-size: 12px;height:20px;'>{0}</td>", item.CityName);
+                sbHtml.AppendFormat("<td style='font-size: 12px;height:20px;'>{0}</td>", item.CountyName);
+                sbHtml.AppendFormat("<td style='font-size: 12px;height:20px;'>{0}</td>", item.TypeName);
                 sbHtml.AppendFormat("<td style='font-size: 12px;height:20px;'>{0}</td>", item.OrganizationName);
+                sbHtml.AppendFormat("<td style='font-size: 12px;height:20px;'>{0}</td>", item.HotelName);
+                sbHtml.AppendFormat("<td style='font-size: 12px;height:20px;'>{0}</td>", item.LodgingDays);
                 sbHtml.AppendFormat("<td style='font-size: 12px;height:20px;'>{0}</td>", item.GroupName);
                 sbHtml.AppendFormat("<td style='font-size: 12px;height:20px;'>{0}</td>", item.PName);
-                sbHtml.AppendFormat("<td style='font-size: 12px;height:20px;'>{0}</td>", item.Gender==1?"男":"女");
                 sbHtml.AppendFormat("<td style='font-size: 12px;height:20px;'>{0}</td>", item.IDCardNo);
+                sbHtml.AppendFormat("<td style='font-size: 12px;height:20px;'>{0}</td>", item.Gender==1?"男":"女");
                 sbHtml.AppendFormat("<td style='font-size: 12px;height:20px;'>{0}</td>", item.Telephone);
                 sbHtml.Append("</tr>");
             }

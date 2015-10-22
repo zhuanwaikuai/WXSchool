@@ -229,6 +229,7 @@
   <ItemGroup>
     <None Include="Properties\PublishProfiles\mobile.pubxml" />
     <Content Include="Views\Pay\Index.cshtml" />
+    <Content Include="Views\Meeting\Sign.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

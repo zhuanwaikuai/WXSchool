@@ -7,6 +7,39 @@ namespace WXSchool.ViewModel.Meeting
 {
     public class ParticipantInfo
     {
+        public string ProvinceName
+        {
+            set;
+            get;
+        }
+        public string CityName
+        {
+            set;
+            get;
+        }
+        public string CountyName
+        {
+            set;
+            get;
+        }
+        public string HotelName
+        {
+            set;
+            get;
+        }
+        public string TypeName
+        {
+            set;
+            get;
+        }
+        /// <summary>
+        /// 住宿天数
+        /// </summary>
+        public int LodgingDays
+        {
+            set;
+            get;
+        }
         /// <summary>
         /// 机构名称
         /// </summary>

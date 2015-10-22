@@ -33,6 +33,21 @@ namespace QJZ.Framework.Utility
         }
 
         /// <summary>
+        /// 取Cookie值
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        public static string GetValue(string name, string key)
+        {
+            var httpCookie = Get(name);
+            if (httpCookie != null)
+                return httpCookie.Values[key];
+            else
+                return string.Empty;
+        }
+
+        /// <summary>
         /// 移除Cookie
         /// </summary>
         /// <param name="name"></param>

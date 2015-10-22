@@ -73,5 +73,11 @@ namespace WXSchool.Bll.Mee
             }
             return new OperationResult(OperationResultType.Error, msg);
         }
+
+        public virtual int TotoalParticipants()
+        {
+            int? count = _respository.Count();
+            return count ?? 0;
+        }
     }
 }

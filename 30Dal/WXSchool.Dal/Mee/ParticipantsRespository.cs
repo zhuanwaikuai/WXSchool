@@ -19,11 +19,14 @@ namespace WXSchool.Dal.Mee
 
         public IEnumerable<ParticipantInfo> Query()
         {
-            var sql = @"select b.OrganizationName,a.GroupName,a.PName
-                    ,a.Gender,a.IDCardNo,a.Telephone
-                    from dbo.Participants a 
-                    join dbo.Registrations b on a.RegistrationId=b.RegId";
+            var sql = @"select b.ProvinceName,b.CityName,b.CountyName,b.GroupName as TypeName,b.OrganizationName,b.HotelName,b.LodgingDays,a.GroupName,a.PName,a.Gender,a.IDCardNo,a.Telephone from dbo.Participants a join dbo.Registrations b on a.RegistrationId=b.RegId";
             return base.GetList<ParticipantInfo>(sql);
+        }
+
+        public int? Count()
+        {
+            var sql = "select COUNT(1) from dbo.Participants";
+            return base.GetDataByScalar<int>(sql);
         }
     }
 }

@@ -62,6 +62,20 @@ namespace WXSchool.Bll.Mee
             return new OperationResult(OperationResultType.Success, "操作成功");
         }
 
+        public virtual OperationResult Sign(string openId)
+        {
+            var registration = GetUserRegistrations(openId);
+            if (registration == null)
+            {
+                return new OperationResult(OperationResultType.Error, "未找到您的报名信息");
+            }
+
+            registration.Status = 20;
+            _respository.Modify(registration);
+
+            return new OperationResult(OperationResultType.Success, "签到成功");
+        }
+
         public virtual OperationResult Edit(Registrations registration)
         {
             string msg = "操作成功";
